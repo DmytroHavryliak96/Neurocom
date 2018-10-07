@@ -202,8 +202,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AvailableNetwork.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Kerogen.cs" />
+    <Compile Include="Models\Layer.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NetworkType.cs" />
+    <Compile Include="Models\NeuralNetwork.cs" />
+    <Compile Include="Models\TaskNetwork.cs" />
+    <Compile Include="Models\TestNetwork.cs" />
+    <Compile Include="Models\TrainedNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -270,6 +278,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DAO\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
