@@ -1,0 +1,11 @@
+bin
+
+.vs
+
+obj
+
+packages
+
+#NuGet
+packages
+!packages/repositories.config
