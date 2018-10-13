@@ -205,9 +205,15 @@
     <Compile Include="DAO\Interfaces\IRepository.cs" />
     <Compile Include="DAO\Interfaces\IUnitOfWork.cs" />
     <Compile Include="DAO\Repositories\ApplicationUserRepository.cs" />
+    <Compile Include="DAO\Repositories\AvailableNetworksRepository.cs" />
     <Compile Include="DAO\Repositories\EFUnitOfWork.cs" />
     <Compile Include="DAO\Repositories\KerogenRepository.cs" />
     <Compile Include="DAO\Repositories\LayerRepository.cs" />
+    <Compile Include="DAO\Repositories\NetworkTypeRepository.cs" />
+    <Compile Include="DAO\Repositories\NeuralNetworkRepository.cs" />
+    <Compile Include="DAO\Repositories\TaskNetworkRepository.cs" />
+    <Compile Include="DAO\Repositories\TestNetworkRepository.cs" />
+    <Compile Include="DAO\Repositories\TrainedNetworkRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
