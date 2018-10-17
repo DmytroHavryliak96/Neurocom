@@ -37,22 +37,33 @@ namespace Neurocom.DAO.Repositories
 
         public IEnumerable<TrainedNetwork> Find(Func<TrainedNetwork, bool> predicate)
         {
-            throw new NotImplementedException();
+            return this.GetAll().Where(predicate);
         }
 
         public TrainedNetwork Get(int id)
         {
-            throw new NotImplementedException();
+            TrainedNetwork network = db.TrainedNetworks.Find(id);         
+            network.AvailableNetwork = availableNetworkRepository.Get(id);
+            network.User = db.Users.Find(network.User.Id);
+            
+            return network;
         }
 
         public IEnumerable<TrainedNetwork> GetAll()
         {
-            throw new NotImplementedException();
+            IEnumerable<TrainedNetwork> networks = db.TrainedNetworks;
+            var listNetworks = networks.ToList();
+            for (int i = 0; i < listNetworks.Count(); i++)
+            {
+                listNetworks[i].AvailableNetwork = availableNetworkRepository.Get(listNetworks[i].AvailableNetworkId);
+                listNetworks[i].User = db.Users.Find(listNetworks[i].User.Id);
+            }
+            return listNetworks;
         }
 
         public void Update(TrainedNetwork item)
         {
-            throw new NotImplementedException();
+            db.Entry(item).State = EntityState.Modified;
         }
     }
 }

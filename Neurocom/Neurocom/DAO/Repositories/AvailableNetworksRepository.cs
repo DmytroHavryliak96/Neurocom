@@ -11,12 +11,10 @@ namespace Neurocom.DAO.Repositories
     public class AvailableNetworksRepository : IRepository<AvailableNetwork>
     {
         private ApplicationDbContext db;
-        private IRepository<NeuralNetwork> neuralNetworkRepository;
 
-        public AvailableNetworksRepository(ApplicationDbContext context, IRepository<NeuralNetwork> rep)
+        public AvailableNetworksRepository(ApplicationDbContext context)
         {
             db = context;
-            neuralNetworkRepository = rep;
         }
 
         public void Create(AvailableNetwork item)
@@ -36,21 +34,30 @@ namespace Neurocom.DAO.Repositories
         }
 
         public IEnumerable<AvailableNetwork> Find(Func<AvailableNetwork, bool> predicate)
-        {
-            return db.AvailableNetworks.Include(o => o.NeuralNetwork).Include(o => o.Task).Where(predicate);
+        {   
+            return this.GetAll().Where(predicate);
         }
 
         public AvailableNetwork Get(int id)
         {
             AvailableNetwork aNet = db.AvailableNetworks.Find(id);
-            aNet.NeuralNetwork = neuralNetworkRepository.Get(aNet.NeuralNetworkId);
+            aNet.NeuralNetwork = db.NeuralNetworks.Find(aNet.NeuralNetworkId);
+            aNet.NeuralNetwork.NetworkType = db.NetworkTypes.Find(aNet.NeuralNetwork.NetworkTypeId);
             aNet.Task = db.Tasks.Find(aNet.TaskId);
             return aNet;
         }
 
         public IEnumerable<AvailableNetwork> GetAll()
         {
-            return db.AvailableNetworks.Include(o => o.NeuralNetwork).Include(o => o.Task);
+            IEnumerable<AvailableNetwork> networks = db.AvailableNetworks;
+            var listNetworks = networks.ToList();
+            for (int i = 0; i < listNetworks.Count(); i++)
+            {
+                listNetworks[i].NeuralNetwork = db.NeuralNetworks.Find(listNetworks[i].NeuralNetworkId);
+                listNetworks[i].NeuralNetwork.NetworkType = db.NetworkTypes.Find(listNetworks[i].NeuralNetwork.NetworkTypeId);
+                listNetworks[i].Task = db.Tasks.Find(listNetworks[i].TaskId);
+            }
+            return listNetworks;
         }
 
         public void Update(AvailableNetwork entity)
