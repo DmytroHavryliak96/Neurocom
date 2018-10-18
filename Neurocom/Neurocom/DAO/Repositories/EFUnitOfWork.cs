@@ -10,9 +10,16 @@ namespace Neurocom.DAO.Repositories
     public class EFUnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext db;
+
         private ApplicationUserRepository applicationUserRepository;
         private KerogenRepository kerogenRepository;
         private LayerRepository layerRepository;
+        private NetworkTypeRepository networkTypeRepository;
+        private NeuralNetworkRepository neuralNetworkRepository;
+        private TaskNetworkRepository taskNetworkRepository;
+        private AvailableNetworksRepository availableNetworkRepository;
+        private TrainedNetworkRepository trainedNetworkRepository;
+        private TestNetworkRepository testNetworkRepository;
 
         public EFUnitOfWork()
         {
@@ -23,7 +30,10 @@ namespace Neurocom.DAO.Repositories
         {
             get
             {
-                throw new NotImplementedException();
+                if (availableNetworkRepository == null)
+                    availableNetworkRepository = new AvailableNetworksRepository(db);
+
+                return availableNetworkRepository;
             }
 
         }
@@ -55,7 +65,10 @@ namespace Neurocom.DAO.Repositories
         {
             get
             {
-                throw new NotImplementedException();
+                if (neuralNetworkRepository == null)
+                    neuralNetworkRepository = new NeuralNetworkRepository(db);
+
+                return neuralNetworkRepository;
             }
 
         }
@@ -64,7 +77,10 @@ namespace Neurocom.DAO.Repositories
         {
             get
             {
-                throw new NotImplementedException();
+                if (taskNetworkRepository == null)
+                    taskNetworkRepository = new TaskNetworkRepository(db);
+
+                return taskNetworkRepository;
             }
 
         }
@@ -73,7 +89,10 @@ namespace Neurocom.DAO.Repositories
         {
             get
             {
-                throw new NotImplementedException();
+                if (testNetworkRepository == null)
+                    testNetworkRepository = new TestNetworkRepository(db, TrainedNetworks);
+
+                return TestNetworks;
             }
 
         }
@@ -82,7 +101,10 @@ namespace Neurocom.DAO.Repositories
         {
             get
             {
-                throw new NotImplementedException();
+                if (trainedNetworkRepository == null)
+                    trainedNetworkRepository = new TrainedNetworkRepository(db, AvailableNetworks);
+
+                return trainedNetworkRepository;
             }
 
         }
@@ -91,7 +113,10 @@ namespace Neurocom.DAO.Repositories
         {
             get
             {
-                throw new NotImplementedException();
+                if (networkTypeRepository == null)
+                    networkTypeRepository = new NetworkTypeRepository(db);
+
+                return networkTypeRepository;
             }
 
         }
