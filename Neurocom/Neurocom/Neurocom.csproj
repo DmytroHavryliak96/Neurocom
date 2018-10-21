@@ -81,6 +81,18 @@
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -200,7 +212,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BL\Interfaces\INetworkService.cs" />
+    <Compile Include="BL\Interfaces\ITrainNetworkService.cs" />
     <Compile Include="BL\NetworkLibrary\NeuralNetwork.cs" />
+    <Compile Include="BL\Services\BackPropagationKerogenService.cs" />
+    <Compile Include="BL\Services\BackPropagationLayerService.cs" />
+    <Compile Include="BL\Services\BackPropagationService.cs" />
+    <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
+    <Compile Include="BL\Services\LVQKerogenService.cs" />
+    <Compile Include="BL\Services\LVQLayerService.cs" />
+    <Compile Include="BL\Services\LVQService.cs" />
+    <Compile Include="BL\Services\NetworkInitializer.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -233,6 +254,7 @@
     <Compile Include="Models\TrainedNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Util\NeurocomModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
