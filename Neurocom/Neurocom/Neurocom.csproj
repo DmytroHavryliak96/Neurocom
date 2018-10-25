@@ -211,12 +211,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BL\Interfaces\IAnswerServise.cs" />
     <Compile Include="BL\Interfaces\INetworkService.cs" />
     <Compile Include="BL\Interfaces\ITrainNetworkService.cs" />
     <Compile Include="BL\NetworkLibrary\NeuralNetwork.cs" />
     <Compile Include="BL\Services\BackPropagationKerogenService.cs" />
     <Compile Include="BL\Services\BackPropagationLayerService.cs" />
     <Compile Include="BL\Services\BackPropagationService.cs" />
+    <Compile Include="BL\Services\ControllerServices\KerogenAnswerService.cs" />
     <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
     <Compile Include="BL\Services\LVQKerogenService.cs" />
     <Compile Include="BL\Services\LVQLayerService.cs" />

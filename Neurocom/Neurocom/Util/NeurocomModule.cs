@@ -7,6 +7,7 @@ using Neurocom.DAO.Interfaces;
 using Neurocom.DAO.Repositories;
 using Neurocom.BL.Interfaces;
 using Neurocom.BL.Services;
+using Neurocom.BL.Services.ControllerServices;
 
 namespace Neurocom.Util
 {
@@ -38,6 +39,23 @@ namespace Neurocom.Util
                                 return new LVQKerogenService();
                             case "LVQLayer":
                                 return new LVQLayerService();
+                            default:
+                                throw new ArgumentException("cannot find specified network");
+                        }
+                    }
+                    );
+                });
+
+            Bind<Func<NetworkInitializer, IUnitOfWork, IAnswerService>>().ToMethod(
+                context =>
+                {
+                    return ((networkInitializer, db) =>
+                    {
+                        switch (networkInitializer.taskName)
+                        {
+                            case "Kerogen":
+                                return new KerogenAnswerService(db);
+                           
                             default:
                                 throw new ArgumentException("cannot find specified network");
                         }

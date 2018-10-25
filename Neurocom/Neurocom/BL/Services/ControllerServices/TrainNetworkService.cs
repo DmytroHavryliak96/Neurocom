@@ -6,23 +6,26 @@ using Neurocom.BL.Interfaces;
 using Neurocom.DAO.Interfaces;
 using Neurocom.BL.Services;
 using Neurocom.Models;
+using System.Threading.Tasks;
 
 namespace Neurocom.BL.Services.ControllerServices
 {
     public class TrainNetworkService : ITrainNetworkService
     {
         private IUnitOfWork Database { get; set; }
+        private IAnswerService service;
         private Func<NetworkInitializer, INetworkService> networkBuilder;
+        private Func<NetworkInitializer, IAnswerService> answerResolver;
 
         // необхідно додати сервіс для визначення відповіді мережі
-        public TrainNetworkService(IUnitOfWork uow, Func<NetworkInitializer, INetworkService> networkResolver)
+        public TrainNetworkService(IUnitOfWork uow, Func<NetworkInitializer, INetworkService> networkResolver, Func<NetworkInitializer,IAnswerService> answerResolver)
         {
             Database = uow;
             networkBuilder = networkResolver;
         }
-
+    
         // необхідно додати асинхронність...
-        public void TrainNetwork(NetworkInitializer data)
+        public async void TrainNetwork(NetworkInitializer data)
         {
             // заглушка
             double[][] inputs = new double[1][];
@@ -37,7 +40,7 @@ namespace Neurocom.BL.Services.ControllerServices
             INetworkService service = networkBuilder(data); // виклик іос-контейнера для побудови необхідного сервіса-нейромережі
             service.InitializeService(data); // ініціалізація сервіса
             service.CreateNetwork(); // створення мережі
-            service.Train(inputs, answers); // навчання мережі
+            await Task.Run(() => service.Train(inputs, answers)); // навчання мережі
 
             string xml = service.SaveNetworkXml(); // збереження навченої мережі
 
