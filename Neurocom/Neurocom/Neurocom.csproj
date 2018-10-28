@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -96,6 +100,11 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -211,6 +220,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BL\Interfaces\IAdminService.cs" />
     <Compile Include="BL\Interfaces\IAnswerServise.cs" />
     <Compile Include="BL\Interfaces\INetworkService.cs" />
     <Compile Include="BL\Interfaces\ITrainNetworkService.cs" />
@@ -218,6 +228,7 @@
     <Compile Include="BL\Services\BackPropagationKerogenService.cs" />
     <Compile Include="BL\Services\BackPropagationLayerService.cs" />
     <Compile Include="BL\Services\BackPropagationService.cs" />
+    <Compile Include="BL\Services\ControllerServices\AdminControllerServices\AdminService.cs" />
     <Compile Include="BL\Services\ControllerServices\KerogenAnswerService.cs" />
     <Compile Include="BL\Services\ControllerServices\LayerAnswerService.cs" />
     <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
@@ -258,6 +269,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Util\NeurocomModule.cs" />
+    <Compile Include="ViewModels\AdminViewModels\ApplicationUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

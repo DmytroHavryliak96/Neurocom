@@ -40,7 +40,7 @@ namespace Neurocom.BL.Services.ControllerServices
                 string xml = service.SaveNetworkXml(); // збереження навченої мережі
 
                 TrainedNetwork network = new TrainedNetwork();
-                network.AvailableNetworkId = Database.AvailableNetworks.Find(aNet => aNet.NeuralNetwork.Equals(data.networkName) && aNet.Task.Equals(data.taskName)).FirstOrDefault().Id;
+                network.AvailableNetworkId = Database.AvailableNetworks.Find(aNet => aNet.NeuralNetwork.Name.Equals(data.networkName) && aNet.Task.Name.Equals(data.taskName)).FirstOrDefault().Id;
                 network.XmlName = xml;
                 return network;
 

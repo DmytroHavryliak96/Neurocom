@@ -8,6 +8,8 @@ using Neurocom.DAO.Repositories;
 using Neurocom.BL.Interfaces;
 using Neurocom.BL.Services;
 using Neurocom.BL.Services.ControllerServices;
+using Neurocom.BL.Services.ControllerServices.AdminControllerServices;
+
 
 namespace Neurocom.Util
 {
@@ -23,6 +25,8 @@ namespace Neurocom.Util
         public override void Load()
         {
             Bind<IUnitOfWork>().To<EFUnitOfWork>().WithConstructorArgument(connectionString);
+            Bind<IAdminService>().To<AdminService>();
+            Bind<ITrainNetworkService>().To<TrainNetworkService>();
 
             Bind<Func<NetworkInitializer, INetworkService>>().ToMethod(
                 context =>

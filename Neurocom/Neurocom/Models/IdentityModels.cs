@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations;
 using System;
 using System.Web.Mvc;
 using Neurocom.DAO.Repositories;
+using System.Linq;
+using Neurocom.DAO.Repositories;
+using Neurocom.DAO.Interfaces;
 
 namespace Neurocom.Models
 {
@@ -60,6 +63,16 @@ namespace Neurocom.Models
 
     public class StoreDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
+        private int GetNetworkId (string name, IRepository<NeuralNetwork> dbNetworks)
+        {
+            return dbNetworks.Find(net => net.Name.Equals(name)).FirstOrDefault().Id;
+        }
+
+        private int GetTaskId (string taskName, IRepository<TaskNetwork> dbTasks)
+        {
+            return dbTasks.Find(task => task.Name.Equals(taskName)).FirstOrDefault().Id;
+        }
+
         protected override void Seed(ApplicationDbContext db)
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
@@ -175,6 +188,15 @@ namespace Neurocom.Models
                 {
                     dbNetworks.Create(networks[i]);
                 }
+
+                AvailableNetworksRepository dbANet = new AvailableNetworksRepository(db);
+                AvailableNetwork[] aNetworks = new AvailableNetwork[]
+                {
+                    new AvailableNetwork {NeuralNetworkId = GetNetworkId("BPN", dbNetworks), TaskId =  GetTaskId("Kerogen", dbTasks)},
+                    new AvailableNetwork {NeuralNetworkId = GetNetworkId("BPN", dbNetworks), TaskId =  GetTaskId("Layer", dbTasks)},
+                    new AvailableNetwork {NeuralNetworkId = GetNetworkId("LVQ", dbNetworks), TaskId =  GetTaskId("Kerogen", dbTasks)},
+                    new AvailableNetwork {NeuralNetworkId = GetNetworkId("LVQ", dbNetworks), TaskId =  GetTaskId("Layer", dbTasks)}
+                };
 
             }
             

@@ -45,12 +45,30 @@ namespace Neurocom.DAO.Repositories
             }
         }
 
+        public ApplicationUser Delete(string id)
+        {
+            ApplicationUser appUser = db.Users.Find(id);
+            if (appUser != null)
+            {
+                db.Users.Remove(appUser);
+              
+            }
+            return appUser;
+
+        }
+
+
         public IEnumerable<ApplicationUser> Find(Func<ApplicationUser, bool> predicate)
         {
             return db.Users.Where(predicate).ToList();
         }
 
         public ApplicationUser Get(int id)
+        {
+            return db.Users.Find(id);
+        }
+
+        public ApplicationUser Get(string id)
         {
             return db.Users.Find(id);
         }
@@ -85,7 +103,6 @@ namespace Neurocom.DAO.Repositories
                 userEntry.ImageMimeType = user.ImageMimeType;
             }
 
-            //db.SaveChanges();
         }
     }
 }
