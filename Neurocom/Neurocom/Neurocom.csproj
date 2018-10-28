@@ -219,6 +219,7 @@
     <Compile Include="BL\Services\BackPropagationLayerService.cs" />
     <Compile Include="BL\Services\BackPropagationService.cs" />
     <Compile Include="BL\Services\ControllerServices\KerogenAnswerService.cs" />
+    <Compile Include="BL\Services\ControllerServices\LayerAnswerService.cs" />
     <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
     <Compile Include="BL\Services\LVQKerogenService.cs" />
     <Compile Include="BL\Services\LVQLayerService.cs" />

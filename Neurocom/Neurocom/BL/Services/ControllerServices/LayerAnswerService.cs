@@ -8,25 +8,27 @@ using Neurocom.DAO.Repositories;
 
 namespace Neurocom.BL.Services.ControllerServices
 {
-    public class KerogenAnswerService : IAnswerService
+    public class LayerAnswerService : IAnswerService
     {
         private IUnitOfWork db;
 
-        public KerogenAnswerService(IUnitOfWork dataBase)
+        public LayerAnswerService(IUnitOfWork dataBase)
         {
             db = dataBase;
         }
 
         public double[][] GetAnswers()
         {
-            var kerogenRepository = (KerogenRepository)db.Kerogens;
-            return kerogenRepository.GetAnswers();
+            var layerRepository = (LayerRepository)db.Layers;
+            return layerRepository.GetAnswers();
         }
 
         public double[][] GetInputs()
         {
-            var kerogenRepository = (KerogenRepository)db.Kerogens;
-            return kerogenRepository.GetInputs();
+            var layerRepository = (LayerRepository)db.Layers;
+            return layerRepository.GetInputs();
         }
+
+
     }
 }

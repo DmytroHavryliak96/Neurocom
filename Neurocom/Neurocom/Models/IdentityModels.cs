@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 using System;
 using System.Web.Mvc;
+using Neurocom.DAO.Repositories;
 
 namespace Neurocom.Models
 {
@@ -87,7 +88,7 @@ namespace Neurocom.Models
                     var result = UserManager.AddToRole(user.Id, "Admin");
                 }
 
-               /* TaskNetworksRepository dbTasks = new TaskNetworksRepository();
+                TaskNetworkRepository dbTasks = new TaskNetworkRepository(db);
                 TaskNetwork taskKerogen = new TaskNetwork { Name = "Kerogen", Description = "парам", TableName = "Kerogens" };
                 TaskNetwork taskLayer = new TaskNetwork { Name = "Layer", Description = "парам", TableName = "Layers" };
                 dbTasks.Create(taskKerogen);
@@ -98,7 +99,7 @@ namespace Neurocom.Models
                 const int typesAmount = 2;
                 const int networkAmount = 2;
 
-                KerogenRepository dbKerogens = new KerogenRepository();
+                KerogenRepository dbKerogens = new KerogenRepository(db);
                 Kerogen[] kerogens = new Kerogen[kerogenAmount] {
                     new Kerogen { Carbon = 0.765, Hydrogen = 0.1, Oxygen = 0.103, Nitrogen = 0.6, Sulfur = 0.026, Type = 1},
                     new Kerogen { Carbon = 0.759, Hydrogen = 0.091, Oxygen = 0.084, Nitrogen = 0.039, Sulfur = 0.026, Type = 1},
@@ -126,7 +127,7 @@ namespace Neurocom.Models
                     dbKerogens.Create(kerogens[i]);
                 }
 
-                LayerRepository dbLayers = new LayerRepository();
+                LayerRepository dbLayers = new LayerRepository(db);
                 Layer[] layers = new Layer[layerAmount]
                 {
                     new Layer {Porosity = 0.189, Clayness = 0.1, Carbonate = 0.86, Amplitude = 0.22, Type = 1},
@@ -151,7 +152,7 @@ namespace Neurocom.Models
                     dbLayers.Create(layers[i]);
                 }
 
-                NetworkTypeRepository dbTypes = new NetworkTypeRepository();
+                NetworkTypeRepository dbTypes = new NetworkTypeRepository(db);
                 NetworkType[] types = new NetworkType[typesAmount]
                 {
                     new NetworkType {Name = "Supervised leraning", Description = "парам"},
@@ -163,7 +164,7 @@ namespace Neurocom.Models
                     dbTypes.Create(types[i]);
                 }
 
-                NeuralNetworkRepository dbNetworks = new NeuralNetworkRepository();
+                NeuralNetworkRepository dbNetworks = new NeuralNetworkRepository(db);
                 NeuralNetwork[] networks = new NeuralNetwork[networkAmount]
                 {
                     new NeuralNetwork {Name = "BPN", Description = "param", NetworkTypeId = 1 },
@@ -174,7 +175,7 @@ namespace Neurocom.Models
                 {
                     dbNetworks.Create(networks[i]);
                 }
-*/
+
             }
             
             if (!roleManager.RoleExists("User"))

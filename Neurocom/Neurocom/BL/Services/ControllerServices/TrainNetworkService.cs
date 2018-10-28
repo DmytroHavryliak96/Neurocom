@@ -13,41 +13,38 @@ namespace Neurocom.BL.Services.ControllerServices
     public class TrainNetworkService : ITrainNetworkService
     {
         private IUnitOfWork Database { get; set; }
-        private IAnswerService service;
-        private Func<NetworkInitializer, INetworkService> networkBuilder;
-        private Func<NetworkInitializer, IAnswerService> answerResolver;
 
-        // необхідно додати сервіс для визначення відповіді мережі
-        public TrainNetworkService(IUnitOfWork uow, Func<NetworkInitializer, INetworkService> networkResolver, Func<NetworkInitializer,IAnswerService> answerResolver)
+        private Func<NetworkInitializer, INetworkService> networkBuilder;
+        private Func<NetworkInitializer, IUnitOfWork, IAnswerService> answerBuilder;
+
+        // визначення сервісів
+        public TrainNetworkService(IUnitOfWork uow, Func<NetworkInitializer, INetworkService> networkResolver, Func<NetworkInitializer, IUnitOfWork, IAnswerService> answerResolver)
         {
             Database = uow;
             networkBuilder = networkResolver;
+            answerBuilder = answerResolver;
         }
     
-        // необхідно додати асинхронність...
-        public async void TrainNetwork(NetworkInitializer data)
+        // асинхронний метод для навчання нейронної мережі для певної задачі на основі даних користувача
+        public async Task<TrainedNetwork> TrainNetworkAsync(NetworkInitializer data)
         {
-            // заглушка
-            double[][] inputs = new double[1][];
-            inputs[0] = new double[1];
-            inputs[0][0] = 0.0;
-
-            double[][] answers = new double[1][];
-            answers[0] = new double[1];
-            answers[0][0] = 0.0;
-            // 
-
             INetworkService service = networkBuilder(data); // виклик іос-контейнера для побудови необхідного сервіса-нейромережі
+            IAnswerService answerservice = answerBuilder(data, Database); // виклик іос-контейнера для побудови необхідного сервіса для отримання відповідей для задач
+
             service.InitializeService(data); // ініціалізація сервіса
             service.CreateNetwork(); // створення мережі
-            await Task.Run(() => service.Train(inputs, answers)); // навчання мережі
 
-            string xml = service.SaveNetworkXml(); // збереження навченої мережі
+            // асинхронне навчання нейронної мережі
+            return await Task.Run(() => {
+                service.Train(answerservice.GetInputs(), answerservice.GetAnswers());
+                string xml = service.SaveNetworkXml(); // збереження навченої мережі
 
-            TrainedNetwork network = new TrainedNetwork();
-            network.AvailableNetworkId = Database.AvailableNetworks.Find(aNet => aNet.NeuralNetwork.Equals(data.networkName) && aNet.Task.Equals(data.taskName)).FirstOrDefault().Id;
-            network.XmlName = xml;
-            //....
+                TrainedNetwork network = new TrainedNetwork();
+                network.AvailableNetworkId = Database.AvailableNetworks.Find(aNet => aNet.NeuralNetwork.Equals(data.networkName) && aNet.Task.Equals(data.taskName)).FirstOrDefault().Id;
+                network.XmlName = xml;
+                return network;
+
+            });  
         }
     }
 }

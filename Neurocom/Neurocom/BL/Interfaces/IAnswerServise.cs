@@ -10,6 +10,7 @@ namespace Neurocom.BL.Interfaces
     public interface IAnswerService
     {
         double[][] GetInputs();
+        double[][] GetAnswers();
         
     }
 }
