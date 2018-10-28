@@ -222,13 +222,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BL\Interfaces\IAdminService.cs" />
     <Compile Include="BL\Interfaces\IAnswerServise.cs" />
+    <Compile Include="BL\Interfaces\IManageNetwork.cs" />
     <Compile Include="BL\Interfaces\INetworkService.cs" />
+    <Compile Include="BL\Interfaces\ITestNetworkNetwork.cs" />
     <Compile Include="BL\Interfaces\ITrainNetworkService.cs" />
     <Compile Include="BL\NetworkLibrary\NeuralNetwork.cs" />
     <Compile Include="BL\Services\BackPropagationKerogenService.cs" />
     <Compile Include="BL\Services\BackPropagationLayerService.cs" />
     <Compile Include="BL\Services\BackPropagationService.cs" />
     <Compile Include="BL\Services\ControllerServices\AdminControllerServices\AdminService.cs" />
+    <Compile Include="BL\Services\ControllerServices\AdminControllerServices\ManageNetworksService.cs" />
     <Compile Include="BL\Services\ControllerServices\KerogenAnswerService.cs" />
     <Compile Include="BL\Services\ControllerServices\LayerAnswerService.cs" />
     <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
@@ -270,6 +273,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Util\NeurocomModule.cs" />
     <Compile Include="ViewModels\AdminViewModels\ApplicationUserViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\NetworkViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
