@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Neurocom.CustomModels;
 
 namespace Neurocom.BL.Interfaces
 {
-    public interface ITestNetwork
+    public interface IInputConverter
     {
-        int TestNetworkFromDataBase(int trainedNetworkId, double[] testVector);
-
-        void Dispose();
+        double[] ConvertVector(InputDataModel model);
+      
     }
 }

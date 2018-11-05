@@ -11,6 +11,9 @@ namespace Neurocom.BL.Interfaces
     {
         double[][] GetInputs();
         double[][] GetAnswers();
-        
+
+        string GetAnswer(int answer);
+
+        void Dispose();
     }
 }

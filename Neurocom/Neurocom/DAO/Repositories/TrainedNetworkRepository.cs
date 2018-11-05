@@ -24,6 +24,21 @@ namespace Neurocom.DAO.Repositories
             db.TrainedNetworks.Add(item);
         }
 
+        public void Create(TrainedNetwork entity, string currentUserId)
+        {
+            if (currentUserId == null)
+            {
+                entity.User = null;
+            }
+            else
+            {
+
+                entity.User = db.Users.Find(currentUserId);
+            }
+            entity.CreatedDate = DateTime.Now;
+            db.TrainedNetworks.Add(entity);
+        }
+
 
         public void Delete(int id)
         {

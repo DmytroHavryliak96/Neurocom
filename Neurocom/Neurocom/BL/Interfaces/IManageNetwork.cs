@@ -5,14 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Neurocom.Models;
 using Neurocom.ViewModels.AdminViewModels;
+using Neurocom.CustomModels;
 
 namespace Neurocom.BL.Interfaces
 {
     interface IManageNetwork
     {
-        IEnumerable<NetworkViewModel> GetAllNetworks();
-        NetworkViewModel GetNetwork(int trainedNetworkId);
+        IEnumerable<NetworkViewModel> GetAllTrainedNetworks();
+        NetworkViewModel GetTrainedNetwork(int trainedNetworkId);
 
-        int TestNetworkFromDataBase
+        IEnumerable<NetworkType> GetAllTypes();
+        NetworkType GetNetworkType(int networkTypeId);
+        void UpdateNetworkType(NetworkType netType);
+
+        IEnumerable<NeuralNetwork> GetAllNeuralNetworks();
+        NeuralNetwork GetNetwork(int networkId);
+        void UpdateNetwork(NeuralNetwork net);
+
+        InputDataModel CreateInputModel(int trainedNetworkId);
+        InputDataModel GetAnswerModel(InputDataModel model);
+
+        void Dispose();
     }
 }

@@ -11,10 +11,26 @@ namespace Neurocom.BL.Services.ControllerServices
     public class LayerAnswerService : IAnswerService
     {
         private IUnitOfWork db;
+        private Dictionary<int, string> layerAnswers;
 
         public LayerAnswerService(IUnitOfWork dataBase)
         {
             db = dataBase;
+            layerAnswers = new Dictionary<int, string>()
+            {
+                {1, "Колектор" },
+                {2, "Покришка" }
+            };
+        }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
+
+        public string GetAnswer(int answer)
+        {
+            return "Даний об'єкт розпізнаний мережею як " + layerAnswers[answer];
         }
 
         public double[][] GetAnswers()

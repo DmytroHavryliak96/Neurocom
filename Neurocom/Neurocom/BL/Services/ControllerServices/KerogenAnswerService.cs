@@ -11,10 +11,26 @@ namespace Neurocom.BL.Services.ControllerServices
     public class KerogenAnswerService : IAnswerService
     {
         private IUnitOfWork db;
+        private Dictionary<int, string> kerogenAnswers;
 
         public KerogenAnswerService(IUnitOfWork dataBase)
         {
             db = dataBase;
+            kerogenAnswers = new Dictionary<int, string>() {
+                {1, "Ліптиніт" },
+                {2, "Екзиніт" },
+                {3, "Вітриніт" }
+            };
+        }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
+
+        public string GetAnswer(int answer)
+        {
+            return "Кероген належить до типу " + kerogenAnswers[answer];
         }
 
         public double[][] GetAnswers()

@@ -21,5 +21,7 @@ namespace Neurocom.BL.Interfaces
 
         ApplicationUser DeleteUser(string userId);
 
+        void Dispose();
+
     }
 }

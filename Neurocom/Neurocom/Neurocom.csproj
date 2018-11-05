@@ -222,6 +222,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BL\Interfaces\IAdminService.cs" />
     <Compile Include="BL\Interfaces\IAnswerServise.cs" />
+    <Compile Include="BL\Interfaces\IInputConverter.cs" />
     <Compile Include="BL\Interfaces\IManageNetwork.cs" />
     <Compile Include="BL\Interfaces\INetworkService.cs" />
     <Compile Include="BL\Interfaces\ITestNetworkNetwork.cs" />
@@ -232,8 +233,10 @@
     <Compile Include="BL\Services\BackPropagationService.cs" />
     <Compile Include="BL\Services\ControllerServices\AdminControllerServices\AdminService.cs" />
     <Compile Include="BL\Services\ControllerServices\AdminControllerServices\ManageNetworksService.cs" />
+    <Compile Include="BL\Services\ControllerServices\ConverterService.cs" />
     <Compile Include="BL\Services\ControllerServices\KerogenAnswerService.cs" />
     <Compile Include="BL\Services\ControllerServices\LayerAnswerService.cs" />
+    <Compile Include="BL\Services\ControllerServices\TestNetworkService.cs" />
     <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
     <Compile Include="BL\Services\LVQKerogenService.cs" />
     <Compile Include="BL\Services\LVQLayerService.cs" />
@@ -242,6 +245,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="CustomModels\InputDataModel.cs" />
+    <Compile Include="CustomModels\KerogenInput.cs" />
+    <Compile Include="CustomModels\LayerInput.cs" />
     <Compile Include="DAO\Interfaces\IDataInput.cs" />
     <Compile Include="DAO\Interfaces\IRepository.cs" />
     <Compile Include="DAO\Interfaces\IUnitOfWork.cs" />
@@ -273,6 +279,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Util\NeurocomModule.cs" />
     <Compile Include="ViewModels\AdminViewModels\ApplicationUserViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\NetworkTaskViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\NetworkViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

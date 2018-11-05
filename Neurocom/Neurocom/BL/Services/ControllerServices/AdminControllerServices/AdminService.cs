@@ -79,5 +79,10 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
             Database.Users.Update(appUser);
             Database.Save();
         }
+
+        public void Dispose()
+        {
+            Database.Dispose();
+        }
     }
 }
