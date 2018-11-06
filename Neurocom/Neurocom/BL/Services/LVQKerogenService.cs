@@ -16,7 +16,7 @@ namespace Neurocom.BL.Services
 
         public LVQKerogenService(string xml) : base(xml)
         {
-
+            this.lvq = new LVQ(xml);
         }
 
         public void CreateNetwork()
@@ -36,6 +36,7 @@ namespace Neurocom.BL.Services
 
         public void Train(double[][] inputs, double[][] answers)
         {
+
             lvq.TrainNetwork();
         }
 
@@ -63,5 +64,7 @@ namespace Neurocom.BL.Services
             this.decayRate = input.decayRate;
             this.numOfClusters = input.numOfClusters;
         }
+
+
     }
 }

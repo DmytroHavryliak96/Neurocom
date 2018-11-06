@@ -14,6 +14,9 @@ namespace Neurocom.BL.Interfaces
 
         string GetAnswer(int answer);
 
+
         void Dispose();
+
+
     }
 }

@@ -34,6 +34,7 @@ namespace Neurocom.Util
             Bind<ITestNetwork>().To<TestNetworkService>();
             Bind<IManageNetwork>().To<ManageNetworksService>();
             Bind<IInputConverter>().To<ConverterService>();
+            Bind<IManageTasks>().To<ManageTasksService>();
 
             Bind<Func<NetworkInitializer, INetworkService>>().ToMethod(
                 context =>

@@ -16,7 +16,7 @@ namespace Neurocom.BL.Services
 
         public BackPropagationLayerService(string xml) : base(xml)
         {
-
+            this.bpn = new BackPropagationNetwork(xml);
         }
 
         public void CreateNetwork()

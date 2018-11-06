@@ -224,6 +224,8 @@
     <Compile Include="BL\Interfaces\IAnswerServise.cs" />
     <Compile Include="BL\Interfaces\IInputConverter.cs" />
     <Compile Include="BL\Interfaces\IManageNetwork.cs" />
+    <Compile Include="BL\Interfaces\IManageTasks.cs" />
+    <Compile Include="BL\Interfaces\IManageTest.cs" />
     <Compile Include="BL\Interfaces\INetworkService.cs" />
     <Compile Include="BL\Interfaces\ITestNetworkNetwork.cs" />
     <Compile Include="BL\Interfaces\ITrainNetworkService.cs" />
@@ -233,6 +235,8 @@
     <Compile Include="BL\Services\BackPropagationService.cs" />
     <Compile Include="BL\Services\ControllerServices\AdminControllerServices\AdminService.cs" />
     <Compile Include="BL\Services\ControllerServices\AdminControllerServices\ManageNetworksService.cs" />
+    <Compile Include="BL\Services\ControllerServices\AdminControllerServices\ManageTasksService.cs" />
+    <Compile Include="BL\Services\ControllerServices\AdminControllerServices\ManageTestNetworksService.cs" />
     <Compile Include="BL\Services\ControllerServices\ConverterService.cs" />
     <Compile Include="BL\Services\ControllerServices\KerogenAnswerService.cs" />
     <Compile Include="BL\Services\ControllerServices\LayerAnswerService.cs" />

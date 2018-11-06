@@ -17,7 +17,7 @@ namespace Neurocom.BL.Services
 
         public LVQLayerService(string xml) : base(xml)
         {
-
+            this.lvq = new LVQ(xml);
         }
 
         public void CreateNetwork()

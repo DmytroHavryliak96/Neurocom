@@ -44,5 +44,7 @@ namespace Neurocom.BL.Services.ControllerServices
             var kerogenRepository = (KerogenRepository)db.Kerogens;
             return kerogenRepository.GetInputs();
         }
+
+
     }
 }
