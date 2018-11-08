@@ -40,9 +40,17 @@ namespace Neurocom.DAO.Repositories
 
         public void Delete(int id)
         {
-            TestNetwork network = db.TestNetworks.Find(id);
-            if (network != null)
-                db.TestNetworks.Remove(network);
+            TestNetwork testNetwork = db.TestNetworks.Find(id);
+            var trained = db.TrainedNetworks.Find(testNetwork.TrainedNetworkId);
+
+            if (testNetwork != null)
+            {
+                db.TestNetworks.Remove(testNetwork);
+                db.SaveChanges();
+
+                db.TrainedNetworks.Remove(trained);
+                db.SaveChanges();
+            }
         }
 
         public IEnumerable<TestNetwork> Find(Func<TestNetwork, bool> predicate)
