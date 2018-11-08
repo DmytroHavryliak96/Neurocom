@@ -12,6 +12,7 @@ namespace Neurocom.BL.Services.ControllerServices
     {
         private IUnitOfWork db;
         private Dictionary<int, string> kerogenAnswers;
+        private const int num = 3;
 
         public KerogenAnswerService(IUnitOfWork dataBase)
         {
@@ -45,6 +46,16 @@ namespace Neurocom.BL.Services.ControllerServices
             return kerogenRepository.GetInputs();
         }
 
+        public int GetParameters()
+        {
+            var rep = (KerogenRepository)db.Kerogens;
+            return rep.GetKerogenParameters();
+        }
 
+        public int GetNumOfClusters()
+        {
+            var rep = (KerogenRepository)db.Kerogens;
+            return rep.GetNumOfClusters();
+        }
     }
 }

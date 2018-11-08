@@ -118,17 +118,36 @@ namespace Neurocom.Util
                     );
                 });
 
-            Bind<Func<NetworkTaskViewModel, NetworkInitializer>>().ToMethod(
+            Bind<Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService>>().ToMethod(
+             context =>
+             {
+                 return ((model, db) =>
+                 {
+                     switch (model.TaskName)
+                     {
+                         case "Kerogen":
+                             return new KerogenAnswerService(db);
+                         case "Layer":
+                             return new LayerAnswerService(db);
+                         default:
+                             throw new ArgumentException("cannot find specified task");
+                     }
+                 }
+                 );
+             });
+
+            Bind<Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer>>().ToMethod(
                 context =>
                 {
-                    return ((network) =>
+                    return ((network, answer) =>
                     {
                         switch (network.Name)
                         {
                             case "BPN":
-                                return new BPNInitializer();
+                                return new BPNInitializer { taskName = network.TaskName, networkName = network.Name, parameters = answer.GetParameters()};
                             case "LVQ":
-                                return new LVQInitializer();
+                                return new LVQInitializer { taskName = network.TaskName, networkName = network.Name, answers = answer.GetAnswers(),
+                                    patterns = answer.GetInputs(), numOfClusters = answer.GetNumOfClusters()};
                             default:
                                 throw new ArgumentException("cannot find specified network");
                         }
@@ -193,6 +212,26 @@ namespace Neurocom.Util
                     }
                     );
                 });
+
+            Bind<Func<NetworkTaskViewModel, NetworkInitializer>>().ToMethod(
+           context =>
+           {
+               return ((network) =>
+               {
+                   switch (network.Name)
+                   {
+                       case "BPN":
+                           return new BPNInitializer();
+                       case "LVQ":
+                           return new LVQInitializer();
+                       default:
+                           throw new ArgumentException("cannot find specified network");
+                   }
+               }
+               );
+           });
+
+
 
         }
     }

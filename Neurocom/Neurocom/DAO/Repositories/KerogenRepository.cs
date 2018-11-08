@@ -124,6 +124,9 @@ namespace Neurocom.DAO.Repositories
             return result;
         }
 
-       
+        public int GetNumOfClusters()
+        {
+            return db.Kerogens.GroupBy(kerogen => kerogen.Type).Count();
+        }
     }
 }

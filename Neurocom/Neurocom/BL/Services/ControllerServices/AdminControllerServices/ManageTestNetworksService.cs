@@ -13,10 +13,14 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
     public class ManageTestNetworksService : IManageTest
     {
         private IUnitOfWork Database { get; set; }
+        private Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> resolver;
+        private Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> answerResolver;
 
-        public ManageTestNetworksService(IUnitOfWork db)
+        public ManageTestNetworksService(IUnitOfWork db, Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> _resolver, Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> _answerResolver)
         {
             Database = db;
+            resolver = _resolver;
+            answerResolver = _answerResolver;
         }
 
         public void DeleteTestNetwork(int _testId)
@@ -41,9 +45,11 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
             return models;
         }
 
-        public InputDataModel GetNetworkInitializer(NetworkTaskViewModel model)
+        public NetworkInitializer GetNetworkInitializer(NetworkTaskViewModel model)
         {
-            throw new NotImplementedException();
+            IAnswerService answer = answerResolver(model, Database);
+            NetworkInitializer item = resolver(model, answer);
+            return item;
         }
 
         public IEnumerable<NetworkTaskViewModel> GetNetworksForTask(int taskId)

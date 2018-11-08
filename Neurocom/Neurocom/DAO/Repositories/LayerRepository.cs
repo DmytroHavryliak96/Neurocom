@@ -26,6 +26,11 @@ namespace Neurocom.DAO.Repositories
             return propertyInfos.Length - 2;
         }
 
+        public int GetNumOfClusters()
+        {
+            return db.Layers.GroupBy(layer => layer.Type).Count();
+        }
+
         public LayerRepository(ApplicationDbContext context)
         {
             this.db = context;

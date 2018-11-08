@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Neurocom.ViewModels.AdminViewModels;
 using Neurocom.Models;
 using Neurocom.CustomModels;
+using Neurocom.BL.Services;
 
 namespace Neurocom.BL.Interfaces
 {
@@ -18,7 +19,7 @@ namespace Neurocom.BL.Interfaces
 
         IEnumerable<NetworkTaskViewModel> GetNetworksForTask(int taskId);
 
-        InputDataModel GetNetworkInitializer(NetworkTaskViewModel model);
+        NetworkInitializer GetNetworkInitializer(NetworkTaskViewModel model);
 
         void DeleteTestNetwork(int _testId);
     }

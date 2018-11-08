@@ -45,6 +45,16 @@ namespace Neurocom.BL.Services.ControllerServices
             return layerRepository.GetInputs();
         }
 
+        public int GetNumOfClusters()
+        {
+            var rep = (LayerRepository)db.Layers;
+            return rep.GetNumOfClusters();
+        }
 
+        public int GetParameters()
+        {
+            var rep = (LayerRepository)db.Layers;
+            return rep.GetLayerParameters();
+        }
     }
 }
