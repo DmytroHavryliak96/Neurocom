@@ -9,7 +9,7 @@ using Neurocom.Models;
 
 namespace Neurocom.BL.Interfaces
 {
-    interface IAdminService
+    public interface IAdminService
     {
         IEnumerable<ApplicationUserViewModel> GetAllUsers();
 
