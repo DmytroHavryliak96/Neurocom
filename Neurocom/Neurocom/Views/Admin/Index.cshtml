@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Content/HomeList.css" rel="stylesheet" type="text/css" />
+<h1>Головна сторінка адміністратора сайту "NeuroCom"</h1>
+<p class="lead">
+    Тут адміністратор системи може виконати наступні функції:
+    <ul class="list-group">
+        <li class="list-group-item">
+            @Html.ActionLink("Менеджмент користувачів системи", "ManageUsers", "Admin")
+        , де адміністратор може переглянути всіх зареєстрованих користувачів системи, редагувати їхній профіль, видалити конкретних користувачів тощо
+    </li>
+    <li class="list-group-item">
+        @Html.ActionLink("Менеджмент задач для мереж", "Index", "ManageTasks")
+    , де можна редагувати опис доступних задач в системі та змінити вхідні дані для створення мереж
+</li>
+<li class="list-group-item">
+    @Html.ActionLink("Менеджмент створених нейромереж", "Index", "ManageNetworks")
+        , де можна переглядати створені користувачами нейромережі, змінювати загальний опис мереж, фільтрувати користувачів по мережам тощо
+</li>
+<li class="list-group-item">
+    @Html.ActionLink("Менеджмент тестових нейромереж", "Index", "ManageTestNetworks")
+    , де можна переглядати тестові нейромережі, які створив адміністратор, додавати нові тестові мережі для всіх користувачів та видаляти їх
+</li>
+</ul>
+</p>
+
+

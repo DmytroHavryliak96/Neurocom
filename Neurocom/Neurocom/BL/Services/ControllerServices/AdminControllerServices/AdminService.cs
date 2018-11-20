@@ -54,7 +54,8 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
         {
             var repository = (ApplicationUserRepository)Database.Users;
             var user = repository.Get(id);
-            return new ApplicationUserViewModel { Id = user.Id, UserName = user.UserName, Address = user.Address, Email = user.Email};
+            return new ApplicationUserViewModel { Id = user.Id, UserName = user.UserName, Address = user.Address,
+                Email = user.Email, PhoneNumber = user.PhoneNumber, ImageData = user.ImageData, ImageMimeType = user.ImageMimeType};
         }
 
         public void UpdateUser(ApplicationUserViewModel user, HttpPostedFileBase image)
@@ -72,6 +73,7 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
                 Address = user.Address,
                 Email = user.Email,
                 UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber,
                 ImageData = user.ImageData,
                 ImageMimeType = user.ImageMimeType
             };
