@@ -1,0 +1,31 @@
+﻿
+@model IEnumerable<Neurocom.Models.NetworkType>
+
+@{
+    ViewBag.Title = "ManageTypes";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Менеджмент типів нейронних мереж</h1>
+
+
+<table class="Grid">
+    <tr>
+        <th>Type ID</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@Html.ActionLink(item.Name, "EditType", new { typeId = item.Id })</td>
+            <td>@item.Description</td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Повернутись до списку мереж", "Index", "ManageNetworks");
+</p>

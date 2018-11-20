@@ -9,7 +9,7 @@ using Neurocom.CustomModels;
 
 namespace Neurocom.BL.Interfaces
 {
-    interface IManageNetwork
+    public interface IManageNetwork
     {
         IEnumerable<NetworkViewModel> GetAllTrainedNetworks();
         NetworkViewModel GetTrainedNetwork(int trainedNetworkId);

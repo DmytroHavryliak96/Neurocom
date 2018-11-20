@@ -23,6 +23,7 @@ namespace Neurocom
 
             NinjectModule neurocomModule = new NeurocomModule("DefaultConnection");
             var kernel = new StandardKernel(neurocomModule);
+            kernel.Unbind<ModelValidatorProvider>();
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }
     }

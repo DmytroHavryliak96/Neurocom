@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Neurocom.ViewModels.AdminViewModels.NetworkViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+<h1>Фільтрація та сортування створених нейромереж</h1>
+
+<table class="display" id="table_id">
+    <thead>
+        <tr>
+            <th>Trained Network ID</th>
+            <th>Network Name</th>
+            <th>Network Type</th>
+            <th>User Name</th>
+            <th>Task Name</th>
+            <th>Created Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.TrainedNetworkID</td>
+                <td>@item.NetworkName</td>
+                <td>@item.NetworkType</td>
+                <td>@item.UserName</td>
+                <td>@item.TaskName</td>
+                <td>@item.CreatedDate</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Повернутись до попереднього списку", "Index", "ManageNetworks")
+</p>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/filtertable/jQuery.3.3.1.js")"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/filtertable/jquery.dataTables.js")"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/filtertable/custom.js")"></script>

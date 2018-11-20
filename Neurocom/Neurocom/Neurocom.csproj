@@ -248,6 +248,7 @@
     <Compile Include="BL\Services\NetworkInitializer.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminControllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminControllers\ManageNetworksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="CustomModels\InputDataModel.cs" />
@@ -314,6 +315,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\filtertable\custom.js" />
+    <Content Include="Scripts\filtertable\jQuery.3.3.1.js" />
+    <Content Include="Scripts\filtertable\jquery.dataTables.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -364,6 +368,9 @@
     <Content Include="Views\Admin\ManageUsers.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
+    <Content Include="Views\ManageNetworks\Index.cshtml" />
+    <Content Include="Views\ManageNetworks\Filter.cshtml" />
+    <Content Include="Views\ManageNetworks\ManageTypes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
