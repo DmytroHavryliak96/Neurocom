@@ -103,9 +103,9 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
             return null;
         }
 
-        public async Task TrainNetworkAsync(NetworkInitializer data, string userId)
+        public void TrainNetwork(NetworkInitializer data, string userId)
         {
-            var network = await trainService.TrainNetworkAsync(data, userId);
+            var network = trainService.TrainNetwork(data, userId);
 
             network.AvailableNetworkId = Database.AvailableNetworks.Find(aNet => aNet.NeuralNetwork.Name.Equals(data.networkName) && aNet.Task.Name.Equals(data.taskName)).FirstOrDefault().Id;
   

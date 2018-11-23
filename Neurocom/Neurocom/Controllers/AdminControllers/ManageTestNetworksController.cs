@@ -43,11 +43,11 @@ namespace Neurocom.Controllers.AdminControllers
             return View(testService.GetNetworkInitializer(model));
         }
 
-        public async Task<ActionResult> CreateInput(NetworkInitializer input)
+        public ActionResult CreateInput(NetworkInitializer input)
         {
             if (ModelState.IsValid)
             {
-                await testService.TrainNetworkAsync(input, User.Identity.GetUserId());
+                testService.TrainNetwork(input, User.Identity.GetUserId());
                 return RedirectToAction("Index");
             }
             else

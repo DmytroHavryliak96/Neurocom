@@ -46,10 +46,10 @@ namespace Neurocom.DAO.Repositories
             if (testNetwork != null)
             {
                 db.TestNetworks.Remove(testNetwork);
-                //db.SaveChanges();
+                db.SaveChanges();
 
                 db.TrainedNetworks.Remove(trained);
-               // db.SaveChanges();
+                db.SaveChanges();
             }
         }
 

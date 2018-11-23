@@ -11,43 +11,45 @@ namespace Neurocom.CustomModels
     {
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-        
-            NetworkInitializer  item = null;
+
             var values = (ValueProviderCollection)bindingContext.ValueProvider;
-            var taskName_ = (string)values.GetValue("taskName").ConvertTo(typeof(string));
             var networkName_ = (string)values.GetValue("networkName").ConvertTo(typeof(string));
-            var minError_ = (double)values.GetValue("minError").ConvertTo(typeof(double));
-            var learningRate_ = (double)values.GetValue("learningRate").ConvertTo(typeof(double));
 
-           // var trainedNetId = (int)values.GetValue("trainedNetworkId").ConvertTo(typeof(int));
-                switch (networkName_)
-                {
-                    case "BPN":
-                        {
-                            var momentum_ = (double)values.GetValue("Momentum").ConvertTo(typeof(double));
-                            var parameters_ = (int)values.GetValue("parameters").ConvertTo(typeof(int));
-                            var hidden_ = (int)values.GetValue("hidden").ConvertTo(typeof(int));
+            ModelBindingContext newbindingContext = new ModelBindingContext()
+            {
 
-                        item = new BPNInitializer
-                        {
-                            taskName = taskName_,
-                            networkName = networkName_,
-                            minError = minError_,
-                            learningRate = learningRate_,
-                            Momentum = momentum_,
-                            parameters = parameters_,
-                            hidden = hidden_
-                        };
+            };
+
+            switch (networkName_)
+            {
+                case "BPN":
+                    {
+                        newbindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(
+                             () => new BPNInitializer(), typeof(BPNInitializer));
+
+                        break;
+                    }
+                case "LVQ":
+                    {
+
+                        newbindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(
+                           () => new LVQInitializer(), typeof(LVQInitializer));
                         break;
                     };
-
                 default:
                     break;
-                }
 
-            return item;
+                   
+
+            }
+            newbindingContext.ModelState = bindingContext.ModelState;
+            newbindingContext.ValueProvider = bindingContext.ValueProvider;
+
+            return base.BindModel(controllerContext, newbindingContext);
+
         }
-           
+
+                
     }
     
 }

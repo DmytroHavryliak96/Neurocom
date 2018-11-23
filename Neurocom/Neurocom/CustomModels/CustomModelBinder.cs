@@ -36,6 +36,26 @@ namespace Neurocom.CustomModels
 
                         break;
                     }
+                case "Layer":
+                    {
+                        var porosity = (double)values.GetValue("Porosity").ConvertTo(typeof(double));
+                        var clayness = (double)values.GetValue("Clayness").ConvertTo(typeof(double));
+                        var carbonate = (double)values.GetValue("Carbonate").ConvertTo(typeof(double));
+                        var amplitude = (double)values.GetValue("Amplitude").ConvertTo(typeof(double));
+                        
+                        item = new LayerInput
+                        {
+                            Porosity = porosity,
+                            Clayness = clayness,
+                            Carbonate =carbonate,
+                            Amplitude = amplitude,
+                        
+                            trainedNetworkId = trainedNetId,
+                            taskName = taskName_
+                        };
+
+                        break;
+                    }
                 default:
                     break;
             }

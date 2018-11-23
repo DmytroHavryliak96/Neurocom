@@ -26,8 +26,8 @@ namespace Neurocom.BL.Services.ControllerServices
             answerBuilder = answerResolver;
         }
     
-        // асинхронний метод для навчання нейронної мережі для певної задачі на основі даних користувача
-        public async Task<TrainedNetwork> TrainNetworkAsync(NetworkInitializer data, string userId)
+        // метод для навчання нейронної мережі для певної задачі на основі даних користувача
+        public TrainedNetwork TrainNetwork(NetworkInitializer data, string userId)
         {
             INetworkService service = networkBuilder(data); // виклик іос-контейнера для побудови необхідного сервіса-нейромережі
             IAnswerService answerservice = answerBuilder(data, Database); // виклик іос-контейнера для побудови необхідного сервіса для отримання відповідей для задач
@@ -35,8 +35,8 @@ namespace Neurocom.BL.Services.ControllerServices
             service.InitializeService(data); // ініціалізація сервіса
             service.CreateNetwork(); // створення мережі
 
-            // асинхронне навчання нейронної мережі
-            var net =   await Task.Run(() => {
+            // навчання нейронної мережі
+            {
                 service.Train(answerservice.GetInputs(), answerservice.GetAnswers());
                 string xml = service.SaveNetworkXml(); // збереження навченої мережі
 
@@ -44,14 +44,10 @@ namespace Neurocom.BL.Services.ControllerServices
                 network.AvailableNetworkId = Database.AvailableNetworks.Find(aNet => aNet.NeuralNetwork.Name.Equals(data.networkName) && aNet.Task.Name.Equals(data.taskName)).FirstOrDefault().Id;
                 network.XmlName = xml;
 
-                var rep = (TestNetworkRepository)Database.TestNetworks;
-                rep.Create(network, userId);
-                Database.Save();
-
                 return network;
                 
-            });
-            return net;
+            }
+
         }
 
         public void Dispose()
