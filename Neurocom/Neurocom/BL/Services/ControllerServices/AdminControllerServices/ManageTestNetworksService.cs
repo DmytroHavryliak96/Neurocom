@@ -9,6 +9,7 @@ using Neurocom.CustomModels;
 using Neurocom.ViewModels.AdminViewModels;
 using Neurocom.DAO.Repositories;
 using System.Threading.Tasks;
+using Ninject;
 
 namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
 {
@@ -17,14 +18,21 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
         private IUnitOfWork Database { get; set; }
         private Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> resolver;
         private Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> answerResolver;
+        private Func<NetworkInitializer, IAnswerService, NetworkInitializer> initializerTypeResolver;
+        private Func<NetworkInitializer, IUnitOfWork, IAnswerService> answerForTraining;
+
         private ITrainNetworkService trainService;
 
-        public ManageTestNetworksService(IUnitOfWork db, ITrainNetworkService trainService_, Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> _resolver, Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> _answerResolver)
+        public ManageTestNetworksService(IUnitOfWork db, ITrainNetworkService trainService_, Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> _resolver, 
+            Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> _answerResolver, Func<NetworkInitializer, IAnswerService, NetworkInitializer> initializerTypeResolver_,
+            Func<NetworkInitializer, IUnitOfWork, IAnswerService> answerForTraining_)
         {
             Database = db;
             resolver = _resolver;
             answerResolver = _answerResolver;
             trainService = trainService_;
+            initializerTypeResolver = initializerTypeResolver_;
+            answerForTraining = answerForTraining_;
         }
 
         public void DeleteTestNetwork(int _testId)
@@ -41,8 +49,6 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
         public IEnumerable<NetworkViewModel> GetAllTestNetworks()
         {
             List<NetworkViewModel> models = new List<NetworkViewModel>();
-
-          //  var set = Database.TestNetworks;
 
             foreach(var net in Database.TestNetworks.GetAll())
             {
@@ -105,6 +111,8 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
 
         public void TrainNetwork(NetworkInitializer data, string userId)
         {
+            data = initializerTypeResolver(data, answerForTraining(data, Database));
+
             var network = trainService.TrainNetwork(data, userId);
 
             network.AvailableNetworkId = Database.AvailableNetworks.Find(aNet => aNet.NeuralNetwork.Name.Equals(data.networkName) && aNet.Task.Name.Equals(data.taskName)).FirstOrDefault().Id;

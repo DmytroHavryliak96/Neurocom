@@ -10,56 +10,38 @@ namespace Neurocom.CustomModels
     {
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            InputDataModel item = null;
             var values = (ValueProviderCollection)bindingContext.ValueProvider;
             var taskName_ = (string)values.GetValue("taskName").ConvertTo(typeof(string));
-            var trainedNetId = (int)values.GetValue("trainedNetworkId").ConvertTo(typeof(int));
+
+            ModelBindingContext newbindingContext = new ModelBindingContext()
+            {
+
+            };
+
             switch (taskName_)
             {
                 case "Kerogen":
                     {
-                        var carbon = (double)values.GetValue("Carbon").ConvertTo(typeof(double));
-                        var hydrogen = (double)values.GetValue("Hydrogen").ConvertTo(typeof(double));
-                        var oxygen = (double)values.GetValue("Oxygen").ConvertTo(typeof(double));
-                        var nitrogen = (double)values.GetValue("Nitrogen").ConvertTo(typeof(double));
-                        var sulfur = (double)values.GetValue("Sulfur").ConvertTo(typeof(double));
-                        item = new KerogenInput
-                        {
-                            Carbon = carbon,
-                            Hydrogen = hydrogen,
-                            Oxygen = oxygen,
-                            Nitrogen = nitrogen,
-                            Sulfur = sulfur,
-                            trainedNetworkId = trainedNetId,
-                            taskName = taskName_
-                        };
+                        newbindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(
+                             () => new KerogenInput(), typeof(KerogenInput));
 
                         break;
                     }
                 case "Layer":
                     {
-                        var porosity = (double)values.GetValue("Porosity").ConvertTo(typeof(double));
-                        var clayness = (double)values.GetValue("Clayness").ConvertTo(typeof(double));
-                        var carbonate = (double)values.GetValue("Carbonate").ConvertTo(typeof(double));
-                        var amplitude = (double)values.GetValue("Amplitude").ConvertTo(typeof(double));
-                        
-                        item = new LayerInput
-                        {
-                            Porosity = porosity,
-                            Clayness = clayness,
-                            Carbonate =carbonate,
-                            Amplitude = amplitude,
-                        
-                            trainedNetworkId = trainedNetId,
-                            taskName = taskName_
-                        };
+                        newbindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(
+                             () => new LayerInput(), typeof(LayerInput));
 
                         break;
                     }
                 default:
                     break;
             }
-            return item;
+
+            newbindingContext.ModelState = bindingContext.ModelState;
+            newbindingContext.ValueProvider = bindingContext.ValueProvider;
+
+            return base.BindModel(controllerContext, newbindingContext);
         }
     }
 }

@@ -139,6 +139,7 @@ namespace Neurocom.Util
                  );
              });
 
+    
             Bind<Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer>>().ToMethod(
                 context =>
                 {
@@ -158,7 +159,30 @@ namespace Neurocom.Util
                     );
                 });
 
-             Bind<Func<TrainedNetwork, InputDataModel>>().ToMethod(
+            Bind<Func<NetworkInitializer, IAnswerService, NetworkInitializer>>().ToMethod(
+              context =>
+              {
+                  return ((network, answer) =>
+                  {
+                      switch (network.networkName)
+                      {
+                          case "BPN":
+                              return network;
+                          case "LVQ":
+                              {
+                                  var net = (LVQInitializer)network;
+                                  net.patterns = answer.GetInputs();
+                                  net.answers = answer.GetAnswers();
+                                  return net;
+                              }
+                          default:
+                              throw new ArgumentException("cannot find specified network");
+                      }
+                  }
+                  );
+              });
+
+            Bind<Func<TrainedNetwork, InputDataModel>>().ToMethod(
                 context =>
                 {
                     return ((network) =>
