@@ -26,6 +26,8 @@ namespace Neurocom.Util
             connectionString = connection;
         }
 
+
+
         public override void Load()
         {
             Bind<IUnitOfWork>().To<EFUnitOfWork>().WithConstructorArgument(connectionString);
@@ -35,6 +37,7 @@ namespace Neurocom.Util
             Bind<IManageNetwork>().To<ManageNetworksService>();
             Bind<IInputConverter>().To<ConverterService>();
             Bind<IManageTasks>().To<ManageTasksService>();
+            Bind<IManageTest>().To<ManageTestNetworksService>();
 
             Bind<Func<NetworkInitializer, INetworkService>>().ToMethod(
                 context =>

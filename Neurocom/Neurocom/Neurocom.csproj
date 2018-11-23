@@ -249,11 +249,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminControllers\AdminController.cs" />
     <Compile Include="Controllers\AdminControllers\ManageNetworksController.cs" />
+    <Compile Include="Controllers\AdminControllers\ManageTestNetworksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="CustomModels\CustomModelBinder.cs" />
     <Compile Include="CustomModels\InputDataModel.cs" />
     <Compile Include="CustomModels\KerogenInput.cs" />
     <Compile Include="CustomModels\LayerInput.cs" />
+    <Compile Include="CustomModels\NetworkBinder.cs" />
     <Compile Include="DAO\Interfaces\IDataInput.cs" />
     <Compile Include="DAO\Interfaces\IRepository.cs" />
     <Compile Include="DAO\Interfaces\IUnitOfWork.cs" />
@@ -371,6 +374,14 @@
     <Content Include="Views\ManageNetworks\Index.cshtml" />
     <Content Include="Views\ManageNetworks\Filter.cshtml" />
     <Content Include="Views\ManageNetworks\ManageTypes.cshtml" />
+    <Content Include="Views\ManageNetworks\EditType.cshtml" />
+    <Content Include="Views\ManageNetworks\ManageNeuralNetworks.cshtml" />
+    <Content Include="Views\ManageNetworks\EditNetwork.cshtml" />
+    <Content Include="Views\ManageNetworks\DataInput.cshtml" />
+    <Content Include="Views\ManageTestNetworks\Index.cshtml" />
+    <Content Include="Views\ManageTestNetworks\AddTestNetwork.cshtml" />
+    <Content Include="Views\ManageTestNetworks\ChooseNetworkType.cshtml" />
+    <Content Include="Views\ManageTestNetworks\NetworkDataInput.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

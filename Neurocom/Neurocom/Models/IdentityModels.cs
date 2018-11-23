@@ -105,7 +105,12 @@ namespace Neurocom.Models
                 TaskNetwork taskKerogen = new TaskNetwork { Name = "Kerogen", Description = "парам", TableName = "Kerogens" };
                 TaskNetwork taskLayer = new TaskNetwork { Name = "Layer", Description = "парам", TableName = "Layers" };
                 dbTasks.Create(taskKerogen);
+
+                db.SaveChanges();
+
                 dbTasks.Create(taskLayer);
+
+                db.SaveChanges();
 
                 const int kerogenAmount = 19;
                 const int layerAmount = 15;
@@ -138,6 +143,7 @@ namespace Neurocom.Models
                 for (int i = 0; i < kerogenAmount; i++)
                 {
                     dbKerogens.Create(kerogens[i]);
+                    db.SaveChanges();
                 }
 
                 LayerRepository dbLayers = new LayerRepository(db);
@@ -163,6 +169,7 @@ namespace Neurocom.Models
                 for (int i = 0; i < layerAmount; i++)
                 {
                     dbLayers.Create(layers[i]);
+                    db.SaveChanges();
                 }
 
                 NetworkTypeRepository dbTypes = new NetworkTypeRepository(db);
@@ -175,6 +182,7 @@ namespace Neurocom.Models
                 for (int i = 0; i < typesAmount; i++)
                 {
                     dbTypes.Create(types[i]);
+                    db.SaveChanges();
                 }
 
                 NeuralNetworkRepository dbNetworks = new NeuralNetworkRepository(db);
@@ -187,6 +195,7 @@ namespace Neurocom.Models
                 for (int i = 0; i < networkAmount; i++)
                 {
                     dbNetworks.Create(networks[i]);
+                    db.SaveChanges();
                 }
 
                 AvailableNetworksRepository dbANet = new AvailableNetworksRepository(db);
@@ -197,6 +206,12 @@ namespace Neurocom.Models
                     new AvailableNetwork {NeuralNetworkId = GetNetworkId("LVQ", dbNetworks), TaskId =  GetTaskId("Kerogen", dbTasks)},
                     new AvailableNetwork {NeuralNetworkId = GetNetworkId("LVQ", dbNetworks), TaskId =  GetTaskId("Layer", dbTasks)}
                 };
+
+                for (int i = 0; i < aNetworks.Length; i++)
+                {
+                    dbANet.Create(aNetworks[i]);
+                    db.SaveChanges();
+                }
 
             }
             

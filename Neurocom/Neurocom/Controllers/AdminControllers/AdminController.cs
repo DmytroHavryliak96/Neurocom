@@ -82,7 +82,11 @@ namespace Neurocom.Controllers.AdminControllers
             return RedirectToAction("ManageUsers");
         }
 
-
+        protected override void Dispose(bool disposing)
+        {
+            adminService.Dispose();
+            base.Dispose(disposing);
+        }
 
 
 

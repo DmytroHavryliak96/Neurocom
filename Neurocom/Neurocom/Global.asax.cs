@@ -9,6 +9,8 @@ using Ninject;
 using Ninject.Modules;
 using Neurocom.Util;
 using Ninject.Web.Mvc;
+using Neurocom.CustomModels;
+using Neurocom.BL.Services;
 
 namespace Neurocom
 {
@@ -21,10 +23,14 @@ namespace Neurocom
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            ModelBinders.Binders.Add(new KeyValuePair<Type, IModelBinder>(typeof(InputDataModel), new CustomModelBinder()));
+            ModelBinders.Binders.Add(new KeyValuePair<Type, IModelBinder>(typeof(NetworkInitializer), new NetworkBinder()));
+
             NinjectModule neurocomModule = new NeurocomModule("DefaultConnection");
             var kernel = new StandardKernel(neurocomModule);
             kernel.Unbind<ModelValidatorProvider>();
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+
         }
     }
 }

@@ -7,6 +7,8 @@ using Neurocom.Models;
 using Neurocom.DAO.Interfaces;
 using Neurocom.CustomModels;
 using Neurocom.ViewModels.AdminViewModels;
+using Neurocom.DAO.Repositories;
+using System.Threading.Tasks;
 
 namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
 {
@@ -15,12 +17,14 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
         private IUnitOfWork Database { get; set; }
         private Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> resolver;
         private Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> answerResolver;
+        private ITrainNetworkService trainService;
 
-        public ManageTestNetworksService(IUnitOfWork db, Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> _resolver, Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> _answerResolver)
+        public ManageTestNetworksService(IUnitOfWork db, ITrainNetworkService trainService_, Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> _resolver, Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> _answerResolver)
         {
             Database = db;
             resolver = _resolver;
             answerResolver = _answerResolver;
+            trainService = trainService_;
         }
 
         public void DeleteTestNetwork(int _testId)
@@ -37,6 +41,8 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
         public IEnumerable<NetworkViewModel> GetAllTestNetworks()
         {
             List<NetworkViewModel> models = new List<NetworkViewModel>();
+
+          //  var set = Database.TestNetworks;
 
             foreach(var net in Database.TestNetworks.GetAll())
             {
@@ -95,6 +101,24 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
                 return network;
             }
             return null;
+        }
+
+        public async Task TrainNetworkAsync(NetworkInitializer data, string userId)
+        {
+            var network = await trainService.TrainNetworkAsync(data, userId);
+
+            network.AvailableNetworkId = Database.AvailableNetworks.Find(aNet => aNet.NeuralNetwork.Name.Equals(data.networkName) && aNet.Task.Name.Equals(data.taskName)).FirstOrDefault().Id;
+  
+            var rep = (TestNetworkRepository)Database.TestNetworks;
+            rep.Create(network, userId);
+
+            Database.Save();
+        }
+
+        public void Dispose()
+        {
+            Database.Dispose();
+            trainService.Dispose();
         }
     }
 }

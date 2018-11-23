@@ -43,7 +43,7 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
         public IEnumerable<NetworkViewModel> GetAllTrainedNetworks()
         {
             List<NetworkViewModel> models = new List<NetworkViewModel>();
-            foreach (var net in Database.TrainedNetworks.GetAll().OrderBy(net => net.Id)
+            foreach (var net in Database.TrainedNetworks.GetAll().OrderBy(net => net.Id))
             {
                 models.Add(GetTrainedNetwork(net.Id));
             }

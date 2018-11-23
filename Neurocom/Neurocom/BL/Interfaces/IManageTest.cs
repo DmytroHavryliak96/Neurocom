@@ -21,6 +21,10 @@ namespace Neurocom.BL.Interfaces
 
         NetworkInitializer GetNetworkInitializer(NetworkTaskViewModel model);
 
+        Task TrainNetworkAsync(NetworkInitializer data, string userId);
+
         void DeleteTestNetwork(int _testId);
+
+        void Dispose();
     }
 }

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Neurocom.ViewModels.AdminViewModels.NetworkTaskViewModel>
+
+@{
+    ViewBag.Title = "ChooseNetworkType";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ChooseNetworkType</h2>
+
+<h1>Менеджмент доступних нейронних мереж</h1>
+
+
+<table class="Grid">
+    <tr>
+        <th>Network ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Network Type</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.NetworkTypeProperty</td>
+            <td>
+                @using (Html.BeginForm("NetworkDataInput", "ManageTestNetworks"))
+                {
+                    @Html.Hidden("TaskName", item.TaskName)
+                    @Html.Hidden("Name", item.Name)
+                    <input type="submit" value="Створити мережу" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>

@@ -58,7 +58,7 @@ namespace Neurocom.DAO.Repositories
         public TrainedNetwork Get(int id)
         {
             TrainedNetwork network = db.TrainedNetworks.Find(id);         
-            network.AvailableNetwork = availableNetworkRepository.Get(id);
+            network.AvailableNetwork = availableNetworkRepository.Get(network.AvailableNetworkId);
             network.User = db.Users.Find(network.User.Id);
             
             return network;

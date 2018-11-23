@@ -92,7 +92,7 @@ namespace Neurocom.DAO.Repositories
                 if (testNetworkRepository == null)
                     testNetworkRepository = new TestNetworkRepository(db, TrainedNetworks);
 
-                return TestNetworks;
+                return testNetworkRepository;
             }
 
         }

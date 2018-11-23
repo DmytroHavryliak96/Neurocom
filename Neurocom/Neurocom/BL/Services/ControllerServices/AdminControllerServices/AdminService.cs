@@ -82,7 +82,7 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
             Database.Save();
         }
 
-        public void Dispose()
+        public  void Dispose()
         {
             Database.Dispose();
         }

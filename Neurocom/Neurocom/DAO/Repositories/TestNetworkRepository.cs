@@ -11,12 +11,12 @@ namespace Neurocom.DAO.Repositories
     public class TestNetworkRepository : IRepository<TestNetwork>
     {
         private ApplicationDbContext db;
-        private IRepository<TrainedNetwork> trainedNetworkRepository;
+        private IRepository<TrainedNetwork> rep;
 
-        public TestNetworkRepository(ApplicationDbContext context, IRepository<TrainedNetwork> rep)
+        public TestNetworkRepository(ApplicationDbContext context, IRepository<TrainedNetwork> rep_)
         {
             db = context;
-            trainedNetworkRepository = rep;
+            rep = rep_;
         }
 
         public void Create(TestNetwork item)
@@ -29,7 +29,7 @@ namespace Neurocom.DAO.Repositories
             entity.User = db.Users.Find(userId);
             entity.CreatedDate = DateTime.Now;
             db.TrainedNetworks.Add(entity);
-            db.SaveChanges();
+          
 
             TestNetwork testNetwork = new TestNetwork();
             testNetwork.TrainedNetwork = entity;
@@ -46,10 +46,10 @@ namespace Neurocom.DAO.Repositories
             if (testNetwork != null)
             {
                 db.TestNetworks.Remove(testNetwork);
-                db.SaveChanges();
+                //db.SaveChanges();
 
                 db.TrainedNetworks.Remove(trained);
-                db.SaveChanges();
+               // db.SaveChanges();
             }
         }
 
@@ -61,7 +61,8 @@ namespace Neurocom.DAO.Repositories
         public TestNetwork Get(int id)
         {
             TestNetwork testNetwork = db.TestNetworks.Find(id);
-            testNetwork.TrainedNetwork = trainedNetworkRepository.Get(testNetwork.TrainedNetworkId);
+            testNetwork.TrainedNetwork = rep.Get(testNetwork.TrainedNetworkId);
+
             return testNetwork;
         }
 

@@ -1,0 +1,26 @@
+﻿@model Neurocom.CustomModels.InputDataModel
+
+@{
+    ViewBag.Title = "TestNetwork";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ведденя вхідних даних для тестування задачі @Model.taskName</h2>
+
+
+    @using (Html.BeginForm("CreateInput", "ManageNetworks"))
+    {
+        @Html.EditorForModel();
+        <input type="submit" value="Протестувати">
+    }
+
+    <p>@Model.answer</p>
+
+
+<div>
+    @Html.ActionLink("Закрити форму та повернутись до списку створених нейронних мереж", "Index")
+</div>
+
+<div>
+    @Html.ActionLink("Закрити форму та повернутись до списку тестових нейронних мереж", "Index", "ManageTestNetworks")
+</div>

@@ -10,7 +10,7 @@ namespace Neurocom.BL.Interfaces
 {
     public interface ITrainNetworkService
     {
-        void TrainNetworkAsync(NetworkInitializer data, string userId);
+        Task<TrainedNetwork> TrainNetworkAsync(NetworkInitializer data, string userId);
 
         void Dispose();
     }

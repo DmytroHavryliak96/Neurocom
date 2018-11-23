@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Neurocom.Models.NeuralNetwork>
+
+@{
+    ViewBag.Title = "ManageNeuralNetworks";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Менеджмент доступних нейронних мереж</h1>
+
+
+<table class="Grid">
+    <tr>
+        <th>Network ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Network Type</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@Html.ActionLink(item.Name, "EditNetwork", new { networkId = item.Id })</td>
+            <td>@item.Description</td>
+            <td>@item.NetworkType.Name</td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Повернутись до списку навчених мереж", "Index", "ManageNetworks")
+</p>

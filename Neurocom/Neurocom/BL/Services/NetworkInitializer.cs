@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Neurocom.BL.Services
 {
-    public class NetworkInitializer
+    public abstract class NetworkInitializer
     {
         [HiddenInput(DisplayValue = false)]
         public string taskName { get; set; }

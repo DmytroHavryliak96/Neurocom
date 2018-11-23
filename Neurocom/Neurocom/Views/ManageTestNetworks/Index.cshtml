@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Neurocom.ViewModels.AdminViewModels.NetworkViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Менеджмент тестових нейромереж</h1>
+
+<table class="Grid">
+
+    <tr>
+        <th>Test Network ID</th>
+        <th>Trained Network ID</th>
+        <th>Network Name</th>
+        <th>Network Type</th>
+        <th>User Name</th>
+        <th>Task Name</th>
+        <th class="NumericCol">Created Date</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TestNetworkId</td>
+            <td>@item.TrainedNetworkID</td>
+            <td>@Html.ActionLink(item.NetworkName, "EditNetwork", "ManageNetworks", new { networkId = item.NetworkId }, null)</td>
+            <td>@Html.ActionLink(item.NetworkType, "EditType", "ManageNetworks", new { typeId = item.NetworkTypeId }, null)</td>
+            <td>@Html.ActionLink(item.UserName, "EditUser", "Admin", new { userId = item.UserId }, null)</td>
+            <td>@Html.ActionLink(item.TaskName, "EditTask", "ManageTasks", new { taskId = item.TaskId }, null)</td>
+            <td class="NumericCol">@item.CreatedDate</td>
+            <td>
+                @using (Html.BeginForm("DataInput", "ManageNetworks"))
+                {
+                    @Html.Hidden("trainedNetworkId", item.TrainedNetworkID)
+                    <input type="submit" value="Протестувати" />
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("DeleteNetwork", "ManageTestNetworks"))
+                {
+                    @Html.Hidden("testNetworkId", item.TestNetworkId)
+                    <input type="submit" value="Видалити" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Додати нову тестову мережу", "AddTestNetwork")
+</div>

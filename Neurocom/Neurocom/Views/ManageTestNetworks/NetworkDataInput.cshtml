@@ -1,0 +1,15 @@
+﻿@model Neurocom.BL.Services.NetworkInitializer
+
+@{
+    ViewBag.Title = "NetworkDataInput";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ведденя вхідних даних для створення нейронної мережі @Model.networkName</h2>
+
+    @using (Html.BeginForm("CreateInput", "ManageTestNetworks"))
+    {
+        @Html.EditorForModel();
+        <input type="submit" value="Створити мережу">
+    }
+

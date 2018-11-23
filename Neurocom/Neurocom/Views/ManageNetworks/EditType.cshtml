@@ -1,0 +1,19 @@
+﻿@model Neurocom.Models.NetworkType
+
+@{
+    ViewBag.Title = "EditType";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Редагування @Model.Name</h2>
+
+@using (Html.BeginForm("EditType", "ManageNetworks"))
+{
+    @Html.EditorForModel();
+    <input type="submit" value="Зберегти зміни">
+}
+
+<div>
+    @Html.ActionLink("Закрити форму та повернутись до списку типів нейронних мереж", "ManageTypes")
+</div>
+
