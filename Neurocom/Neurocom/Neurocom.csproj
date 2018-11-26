@@ -229,6 +229,7 @@
     <Compile Include="BL\Interfaces\INetworkService.cs" />
     <Compile Include="BL\Interfaces\ITestNetworkNetwork.cs" />
     <Compile Include="BL\Interfaces\ITrainNetworkService.cs" />
+    <Compile Include="BL\Interfaces\IUserController.cs" />
     <Compile Include="BL\NetworkLibrary\NeuralNetwork.cs" />
     <Compile Include="BL\Services\BackPropagationKerogenService.cs" />
     <Compile Include="BL\Services\BackPropagationLayerService.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="BL\Services\ControllerServices\LayerAnswerService.cs" />
     <Compile Include="BL\Services\ControllerServices\TestNetworkService.cs" />
     <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
+    <Compile Include="BL\Services\ControllerServices\UserControllerServices\UserService.cs" />
     <Compile Include="BL\Services\LVQKerogenService.cs" />
     <Compile Include="BL\Services\LVQLayerService.cs" />
     <Compile Include="BL\Services\LVQService.cs" />
@@ -252,6 +254,7 @@
     <Compile Include="Controllers\AdminControllers\ManageTestNetworksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserControllers\UserController.cs" />
     <Compile Include="CustomModels\CustomModelBinder.cs" />
     <Compile Include="CustomModels\InputDataModel.cs" />
     <Compile Include="CustomModels\KerogenInput.cs" />
@@ -382,6 +385,10 @@
     <Content Include="Views\ManageTestNetworks\AddTestNetwork.cshtml" />
     <Content Include="Views\ManageTestNetworks\ChooseNetworkType.cshtml" />
     <Content Include="Views\ManageTestNetworks\NetworkDataInput.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\TastList.cshtml" />
+    <Content Include="Views\User\NetworkList.cshtml" />
+    <Content Include="Views\User\TestNetworks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -64,7 +64,8 @@ namespace Neurocom.Controllers.AdminControllers
             if (ModelState.IsValid)
             {
                 adminService.CreateUser(model);
-                return RedirectToAction("ManageUsers");
+                return RedirectToAction("ManageUsers");
+
             }
             else
             {

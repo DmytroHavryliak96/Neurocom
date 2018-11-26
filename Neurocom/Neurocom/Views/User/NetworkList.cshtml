@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Neurocom.ViewModels.AdminViewModels.NetworkViewModel>
+
+@{
+    ViewBag.Title = "NetworkList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NetworkList</h2>
+
+
+<table class="Grid">
+    <tr>
+        <th>NetworkName</th>
+        <th>NetworkType</th>
+        <th>TypeDescription</th>
+        <th>NetworkDescription</th>
+        <th>Image</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.NetworkName</td>
+            <td>@item.NetworkType</td>
+            <td>@item.TypeDescription</td>
+            <td>@item.NetworkDescription</td>
+            <td>
+                @if (item.NetworkName.Equals("BPN"))
+                {
+                    <img src="~/Content/Images/back_propagation.PNG">
+                }
+                else
+                {
+                    <img src="~/Content/Images/lvq.PNG">
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

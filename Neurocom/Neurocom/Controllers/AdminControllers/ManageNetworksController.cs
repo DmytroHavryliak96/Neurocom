@@ -107,5 +107,14 @@ namespace Neurocom.Controllers.AdminControllers
             }
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            manageNetworkService.Dispose();
+            base.Dispose(disposing);
+        }
+
+
+
+
     }
 }

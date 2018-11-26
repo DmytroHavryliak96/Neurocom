@@ -151,7 +151,14 @@ namespace Neurocom.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    Address = model.Address,
+                    PhoneNumber = model.Phone,
+                    RegistrationDate = DateTime.Now,
+                    LastLogin = DateTime.Now
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

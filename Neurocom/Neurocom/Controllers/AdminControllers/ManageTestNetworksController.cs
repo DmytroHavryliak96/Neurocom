@@ -57,7 +57,11 @@ namespace Neurocom.Controllers.AdminControllers
             }
         }
 
-
+        protected override void Dispose(bool disposing)
+        {
+            testService.Dispose();
+            base.Dispose(disposing);
+        }
 
     }
 }

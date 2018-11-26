@@ -13,7 +13,7 @@ using Neurocom.ViewModels.AdminViewModels;
 using Neurocom.CustomModels;
 using Neurocom.Models;
 using System.Reflection;
-
+using Neurocom.BL.Services.ControllerServices.UserControllerServices;
 
 namespace Neurocom.Util
 {
@@ -38,6 +38,7 @@ namespace Neurocom.Util
             Bind<IInputConverter>().To<ConverterService>();
             Bind<IManageTasks>().To<ManageTasksService>();
             Bind<IManageTest>().To<ManageTestNetworksService>();
+            Bind<IUserController>().To<UserService>();
 
             Bind<Func<NetworkInitializer, INetworkService>>().ToMethod(
                 context =>
