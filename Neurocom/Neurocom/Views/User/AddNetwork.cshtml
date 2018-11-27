@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Neurocom.Models.TaskNetwork>
+
+@{
+    ViewBag.Title = "AddNetwork";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Вибір задачі</h2>
+
+<table class="Grid">
+    <tr>
+        <th>TaskID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>
+                @if (item.ImageData != null)
+                {
+                    <div style="float: left; margin-right: 20px">
+                        <img width="300" height="200" src="@Url.Action("GetImage", "Branch", new {taskId = item.Id })" />
+                    </div>
+                }
+            <td>
+                @using (Html.BeginForm("ChooseNetworkType", "User"))
+                {
+                    @Html.Hidden("taskId", item.Id)
+                    <input type="submit" value="Створити мережу" />
+                }
+            </td>
+            </td>
+        </tr>
+    }
+
+</table>
+

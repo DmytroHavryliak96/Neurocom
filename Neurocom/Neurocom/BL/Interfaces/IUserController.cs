@@ -1,4 +1,5 @@
-﻿using Neurocom.CustomModels;
+﻿using Neurocom.BL.Services;
+using Neurocom.CustomModels;
 using Neurocom.Models;
 using Neurocom.ViewModels.AdminViewModels;
 using System;
@@ -31,6 +32,12 @@ namespace Neurocom.BL.Interfaces
         NetworkViewModel GetNetwork(int _netId);
 
         IEnumerable<NetworkViewModel> GetAllNetworks();
+
+        NetworkInitializer GetNetworkInitializer(NetworkTaskViewModel model);
+
+        void TrainNetwork(NetworkInitializer data, string userId);
+
+        void DeleteUserNetwork(int _testId);
 
     }
 }

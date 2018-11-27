@@ -57,6 +57,9 @@ namespace Neurocom.Controllers.AdminControllers
             }
         }
 
+        /***********************************/
+        // додавання нової мережі юзера
+
         protected override void Dispose(bool disposing)
         {
             testService.Dispose();

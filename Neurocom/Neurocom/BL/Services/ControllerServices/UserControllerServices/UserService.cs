@@ -18,15 +18,28 @@ namespace Neurocom.BL.Services.ControllerServices.UserControllerServices
         private Func<TrainedNetwork, InputDataModel> _inputResover;
         private IInputConverter _converterResolver;
         private Func<InputDataModel, IUnitOfWork, IAnswerService> _answerResolver;
-        private ITestNetwork _testResolver; 
+        private ITestNetwork _testResolver;
+        private ITrainNetworkService _trainService;
+        private Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> _answerResolverCreate;
+        private Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> _resolver;
+        private Func<NetworkInitializer, IAnswerService, NetworkInitializer> _initializerTypeResolver;
+        private Func<NetworkInitializer, IUnitOfWork, IAnswerService> _answerForTraining;
 
-        public UserService(IUnitOfWork  db, Func<TrainedNetwork, InputDataModel> input, IInputConverter converter_, Func<InputDataModel, IUnitOfWork, IAnswerService> answer, ITestNetwork test)
+        public UserService(IUnitOfWork  db, Func<TrainedNetwork, InputDataModel> input, IInputConverter converter_, 
+            Func<InputDataModel, IUnitOfWork, IAnswerService> answer, ITestNetwork test, Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> answerResolverCreate,
+            Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> resolver, Func<NetworkInitializer, IAnswerService, NetworkInitializer> init,
+            Func<NetworkInitializer, IUnitOfWork, IAnswerService> trainingAnswer, ITrainNetworkService trainService)
         {
             database = db;
             _inputResover = input;
             _converterResolver = converter_;
             _answerResolver = answer;
             _testResolver = test;
+            _answerResolverCreate = answerResolverCreate;
+            _resolver = resolver;
+            _initializerTypeResolver = init;
+            _answerForTraining = trainingAnswer;
+            _trainService = trainService;
         }
 
         public InputDataModel CreateAnswerModel(InputDataModel _model)
@@ -193,6 +206,32 @@ namespace Neurocom.BL.Services.ControllerServices.UserControllerServices
                 return model;
             }
             return null;
+        }
+
+        public NetworkInitializer GetNetworkInitializer(NetworkTaskViewModel model)
+        {
+            IAnswerService answer = _answerResolverCreate(model, database);
+            NetworkInitializer item = _resolver(model, answer);
+            return item;
+        }
+
+        public void TrainNetwork(NetworkInitializer data, string userId)
+        {
+            data = _initializerTypeResolver(data, _answerForTraining(data, database));
+
+            var network = _trainService.TrainNetwork(data, userId);
+
+            network.AvailableNetworkId = database.AvailableNetworks.Find(aNet => aNet.NeuralNetwork.Name.Equals(data.networkName) && aNet.Task.Name.Equals(data.taskName)).FirstOrDefault().Id;
+
+            var rep = (TrainedNetworkRepository)database.TrainedNetworks;
+            rep.Create(network, userId);
+
+            database.Save();
+        }
+
+        public void DeleteUserNetwork(int _testId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

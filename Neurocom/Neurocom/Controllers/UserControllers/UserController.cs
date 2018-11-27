@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Neurocom.Models;
 using Neurocom.CustomModels;
+using Neurocom.ViewModels.AdminViewModels;
+using Neurocom.BL.Services;
 
 namespace Neurocom.Controllers.UserControllers
 {
@@ -76,5 +78,36 @@ namespace Neurocom.Controllers.UserControllers
                 return View(_user);
             }
         }
+
+        public ActionResult AddNetwork()
+        {
+            return View(_contrl.GetAllTasks());
+        }
+
+        public ActionResult ChooseNetworkType(int taskId)
+        {
+            return View(_contrl.GetNetworksForTask(taskId));
+        }
+
+        public ActionResult NetworkDataInput(NetworkTaskViewModel model)
+        {
+            return View(_contrl.GetNetworkInitializer(model));
+        }
+
+        public ActionResult CreateNet(NetworkInitializer input)
+        {
+            if (ModelState.IsValid)
+            {
+                _contrl.TrainNetwork(input, User.Identity.GetUserId());
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // there is something wrong with the data values
+                return View("NetworkDataInput", input);
+            }
+        }
+
+
     }
 }

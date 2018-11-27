@@ -1,0 +1,15 @@
+﻿@model Neurocom.BL.Services.NetworkInitializer
+
+@{
+    ViewBag.Title = "NetworkDataInput";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ведденя вхідних даних для створення нейронної мережі @Model.networkName</h2>
+
+@Html.Partial(Model.networkName + "PartialView", Model)
+
+
+
+
+

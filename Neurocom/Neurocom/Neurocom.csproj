@@ -394,6 +394,11 @@
     <Content Include="Views\User\DataInput.cshtml" />
     <Content Include="Views\User\KerogenInputPartial.cshtml" />
     <Content Include="Views\User\LayerInputPartial.cshtml" />
+    <Content Include="Views\User\AddNetwork.cshtml" />
+    <Content Include="Views\User\ChooseNetworkType.cshtml" />
+    <Content Include="Views\User\NetworkDataInput.cshtml" />
+    <Content Include="Views\User\BPNPartialView.cshtml" />
+    <Content Include="Views\User\LVQPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
