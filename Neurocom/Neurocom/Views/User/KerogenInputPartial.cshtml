@@ -1,0 +1,31 @@
+﻿@model Neurocom.CustomModels.KerogenInput
+
+@using (Html.BeginForm("CreateInput", "User"))
+{
+    <div class="col-md-4">
+        <h5>Карбон</h5>
+        <br />
+        <h5>Гідроген</h5>
+        <br />
+        <h5>Оксиген</h5>
+        <br />
+        <h5>Нітроген</h5>
+        <br />
+        <h5>Сульфур</h5>
+    </div>
+
+    <p>@Html.TextBoxFor(m => m.Carbon, new { type = "number", min = "0", max = "1", step = "0.001", required = "required", style = "width:176px" })</p>
+        <br />
+        <p>@Html.TextBoxFor(m => m.Hydrogen, new { type = "number", min = "0", max = "1", step = "0.001", required = "required", style = "width:176px" })</p>
+        <br />
+        <p>@Html.TextBoxFor(m => m.Oxygen, new { type = "number", min = "0", max = "1", step = "0.001", required = "required", style = "width:176px" })</p>
+        <br />
+        <p>@Html.TextBoxFor(m => m.Nitrogen, new { type = "number", min = "0", max = "1", step = "0.001", required = "required", style = "width:176px" })</p>
+        <br />
+        <p>@Html.TextBoxFor(m => m.Sulfur, new { type = "number", min = "0", max = "1", step = "0.001", required = "required", style = "width:176px" })</p>
+        @Html.Hidden("taskName", Model.taskName)
+        @Html.Hidden("trainedNetworkId", Model.trainedNetworkId)
+        <input type="submit" value="Протестувати">
+}
+
+<p>@Model.answer</p>
