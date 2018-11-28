@@ -234,6 +234,7 @@
     <Compile Include="BL\Services\BackPropagationKerogenService.cs" />
     <Compile Include="BL\Services\BackPropagationLayerService.cs" />
     <Compile Include="BL\Services\BackPropagationService.cs" />
+    <Compile Include="BL\Services\CaptchaImage.cs" />
     <Compile Include="BL\Services\ControllerServices\AdminControllerServices\AdminService.cs" />
     <Compile Include="BL\Services\ControllerServices\AdminControllerServices\ManageNetworksService.cs" />
     <Compile Include="BL\Services\ControllerServices\AdminControllerServices\ManageTasksService.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Controllers\AdminControllers\AdminController.cs" />
     <Compile Include="Controllers\AdminControllers\ManageNetworksController.cs" />
     <Compile Include="Controllers\AdminControllers\ManageTestNetworksController.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserControllers\UserController.cs" />
@@ -402,6 +404,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Branch\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

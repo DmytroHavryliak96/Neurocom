@@ -1,6 +1,6 @@
 ﻿@model Neurocom.BL.Services.LVQInitializer
 
-@using (Html.BeginForm("CreateNetworkInput", "User"))
+@using (Html.BeginForm("CreateNet", "User"))
 {
     <p>@Html.TextBoxFor(m => m.decayRate, new { type = "number", min = "0.5", max = "0.9", step = "0.1", Value = "0.7", required = "required", style = "width:176px" })</p>
     <br />

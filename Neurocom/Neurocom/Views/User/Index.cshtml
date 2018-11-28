@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Neurocom.ViewModels.AdminViewModels.NetworkViewModel>
-
+@using Microsoft.AspNet.Identity;
+@using Neurocom.DAO.Repositories;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <div class="row">
     <div class="col-md-3">
@@ -19,67 +19,71 @@
                 <li>@Html.ActionLink("Протестувати тестові мережі", "TestNetworks", "User")</li>
                 <li>@Html.ActionLink("Переглянути список задач в системі", "TaskList", "User")</li>
                 <li>@Html.ActionLink("Переглянути список мереж в системі", "NetworkList", "User")</li>
-                <li class="dropdown-submenu">
-                    <a tabindex="-1" href="#">Hover me for more options</a>
-                    <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="#">Second level</a></li>
-                        <li class="dropdown-submenu">
-                            <a href="#">Even More..</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">3rd level</a></li>
-                                <li><a href="#">3rd level</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Second level</a></li>
-                        <li><a href="#">Second level</a></li>
-                    </ul>
-                </li>
             </ul>
         </div>
     </div>
+    <div class="col-md-8">
+        @if (Model.Count() != 0)
+        {
+            <h1 align="center">Доступні мережі</h1>
+
+            <table class="table" id="table_id">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Назва мережі</th>
+                        <th>Тип</th>
+                        <th>Ім'я користувача</th>
+                        <th>Завдання</th>
+                        <th>Дата створення</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TrainedNetworkID</td>
+                            <td>@item.NetworkName</td>
+                            <td>@item.NetworkType</td>
+                            <td>@item.UserName</td>
+                            <td>@item.TaskName</td>
+                            <td>@item.CreatedDate</td>
+                            <td>
+                                @using (Html.BeginForm("DataInput", "User"))
+                    {
+                                    @Html.Hidden("trainedNetworkId", item.TrainedNetworkID)
+                                    <input type="submit" value="Протестувати" />
+                                }
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("DeleteNetwork", "User"))
+                    {
+                                    @Html.Hidden("trainedNetworkId", item.TrainedNetworkID)
+                                    <input type="submit" value="Видалити" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+    <div class="col-md-1">
+        <br />
+        @{
+            var db = new ApplicationUserRepository(new Neurocom.Models.ApplicationDbContext());
+            var user = db.Get(User.Identity.GetUserId());
+            if (user.ImageData == null)
+            {
+                <img width="100" height="100" src="~/Content/Images/avatar.PNG" />
+            }
+            else
+            {
+                <img width="100" height="100" src="@Url.Action("GetAvatar", "Branch", new { userId = user.Id })" />
+            }
+        }
+    </div>
 </div>
 
-<h1>Доступні мережі для користувача</h1>
-
-<table class="display" id="table_id">
-    <thead>
-        <tr>
-            <th>Trained Network ID</th>
-            <th>Network Name</th>
-            <th>Network Type</th>
-            <th>User Name</th>
-            <th>Task Name</th>
-            <th>Created Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-
-                <td>@item.TrainedNetworkID</td>
-                <td>@item.NetworkName</td>
-                <td>@item.NetworkType</td>
-                <td>@item.UserName</td>
-                <td>@item.TaskName</td>
-                <td>@item.CreatedDate</td>
-                <td>
-                    @using (Html.BeginForm("DataInput", "User"))
-                    {
-                        @Html.Hidden("trainedNetworkId", item.TrainedNetworkID)
-                        <input type="submit" value="Протестувати" />
-                    }
-                </td>
-                <td>
-                    @using (Html.BeginForm("DeleteNetwork", "User"))
-                    {
-                        @Html.Hidden("trainedNetworkId", item.TrainedNetworkID)
-                        <input type="submit" value="Видалити" />
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
 
