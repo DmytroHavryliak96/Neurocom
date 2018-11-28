@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Neurocom.CustomModels.KerogenViewModel>
+@using Neurocom.CustomModels
+
+<p> what </p>
+
+<table class="Grid">
+    <tr>
+        <th>KerogenID</th>
+        <th class="NumericCol">Carbon</th>
+        <th class="NumericCol">Hydrogen</th>
+        <th class="NumericCol">Oxygen</th>
+        <th class="NumericCol">Nitrogen</th>
+        <th class="NumericCol">Sulfur</th>
+        <th class="NumericCol">Type</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.Id.ToString(), "GetData", Model)</td>
+            <td class="NumericCol">@item.Carbon</td>
+            <td class="NumericCol">@item.Hydrogen</td>
+            <td class="NumericCol">@item.Oxygen</td>
+            <td class="NumericCol">@item.Nitrogen</td>
+            <td class="NumericCol">@item.Sulfur</td>
+            <td class="NumericCol">@item.Type</td>
+            <td>
+                @using (Html.BeginForm("DeleteData", "ManageTasks"))
+                {
+                    @Html.Hidden("model", Model)
+                    <input type="submit" value="Видалити" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Додати новий запис про кероген", "CreateData", new KerogenViewModel())
+</p>
+

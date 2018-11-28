@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Neurocom.Models;
 using System.Web;
+using Neurocom.CustomModels;
 
 namespace Neurocom.BL.Interfaces
 {
@@ -14,7 +15,13 @@ namespace Neurocom.BL.Interfaces
         TaskNetwork GetTask(int taskId);
         void EditTask(TaskNetwork task, HttpPostedFileBase image);
 
-        IEnumerable<Kerogen> GetAllKerogens();
+        IEnumerable<TaskViewModel> GetAllData(string tableName);
+        TaskViewModel GetData(TaskViewModel item);
+        void UpdateData(TaskViewModel model);
+        void DeleteData(TaskViewModel model);
+
+
+       /* IEnumerable<Kerogen> GetAllKerogens();
         Kerogen GetKerogen(int kerogenId);
         void EditKerogen(Kerogen kerogen);
         void DeleteKerogen(int kerogenId);
@@ -25,7 +32,7 @@ namespace Neurocom.BL.Interfaces
         Layer GetLayer(int layerId);
         void EditLayer(Layer layer);
         void DeleteLayer(int layerId);
-        Layer CreateLayer();
+        Layer CreateLayer();*/
 
 
 

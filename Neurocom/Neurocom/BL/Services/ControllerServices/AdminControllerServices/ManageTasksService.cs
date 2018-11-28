@@ -5,28 +5,41 @@ using System.Web;
 using Neurocom.BL.Interfaces;
 using Neurocom.Models;
 using Neurocom.DAO.Interfaces;
+using Neurocom.CustomModels;
 
 namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
 {
     public class ManageTasksService : IManageTasks
     {
         private IUnitOfWork Database { get; set; }
+        private Func<string, IUnitOfWork, IAnswerService> answerService;
 
-        public ManageTasksService(IUnitOfWork db)
+        public ManageTasksService(IUnitOfWork db, Func<string, IUnitOfWork, IAnswerService> answerService_)
         {
             Database = db;
+            answerService = answerService_;
         }
 
-        public void EditKerogen(Kerogen kerogen)
+        /*   public void EditKerogen(Kerogen kerogen)
+           {
+               Database.Kerogens.Update(kerogen);
+               Database.Save();
+           }
+
+           public void EditLayer(Layer layer)
+           {
+               Database.Layers.Update(layer);
+               Database.Save();
+           }*/
+
+        public IEnumerable<TaskNetwork> GetAllTasks()
         {
-            Database.Kerogens.Update(kerogen);
-            Database.Save();
+            return Database.TaskNetworks.GetAll();
         }
 
-        public void EditLayer(Layer layer)
+        public TaskNetwork GetTask(int taskId)
         {
-            Database.Layers.Update(layer);
-            Database.Save();
+            return Database.TaskNetworks.Get(taskId);
         }
 
         public void EditTask(TaskNetwork task, HttpPostedFileBase image)
@@ -41,22 +54,45 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
             Database.Save();
         }
 
-        public IEnumerable<Kerogen> GetAllKerogens()
+        public IEnumerable<TaskViewModel> GetAllData(string tablename)
         {
-            return Database.Kerogens.GetAll();
+            IAnswerService service = answerService(tablename, Database);
+            return service.GetAllData();
         }
 
-        public IEnumerable<Layer> GetAllLayers()
+        public TaskViewModel GetData(TaskViewModel item)
         {
-            return Database.Layers.GetAll();
+            IAnswerService service = answerService(item.TaskName, Database);
+            return service.GetData(item);
         }
 
-        public IEnumerable<TaskNetwork> GetAllTasks()
+        public void UpdateData(TaskViewModel model)
         {
-            return Database.TaskNetworks.GetAll();
+            IAnswerService service = answerService(model.TaskName, Database);
+            service.UpdateTask(model);
         }
 
-        public Kerogen GetKerogen(int kerogenId)
+        public void DeleteData(TaskViewModel model)
+        {
+            IAnswerService service = answerService(model.TaskName, Database);
+            service.DeleteData(model);
+        }
+
+     
+
+        /* public IEnumerable<Kerogen> GetAllKerogens()
+         {
+             return Database.Kerogens.GetAll();
+         }
+
+         public IEnumerable<Layer> GetAllLayers()
+         {
+             return Database.Layers.GetAll();
+         }*/
+
+
+
+        /*public Kerogen GetKerogen(int kerogenId)
         {
             return Database.Kerogens.Get(kerogenId);
         }
@@ -64,14 +100,11 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
         public Layer GetLayer(int layerId)
         {
             return Database.Layers.Get(layerId);
-        }
+        }*/
 
-        public TaskNetwork GetTask(int taskId)
-        {
-            return Database.TaskNetworks.Get(taskId);
-        }
 
-        public void DeleteKerogen(int kerogenId)
+
+        /*public void DeleteKerogen(int kerogenId)
         {
             Database.Kerogens.Delete(kerogenId);
             Database.Save();
@@ -91,6 +124,6 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
         public Layer CreateLayer()
         {
             return new Layer();
-        }
+        }*/
     }
 }

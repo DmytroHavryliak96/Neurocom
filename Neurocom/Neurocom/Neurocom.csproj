@@ -252,6 +252,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminControllers\AdminController.cs" />
     <Compile Include="Controllers\AdminControllers\ManageNetworksController.cs" />
+    <Compile Include="Controllers\AdminControllers\ManageTaskController.cs" />
     <Compile Include="Controllers\AdminControllers\ManageTestNetworksController.cs" />
     <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="CustomModels\KerogenInput.cs" />
     <Compile Include="CustomModels\LayerInput.cs" />
     <Compile Include="CustomModels\NetworkBinder.cs" />
+    <Compile Include="CustomModels\TaskViewModel.cs" />
     <Compile Include="DAO\Interfaces\IDataInput.cs" />
     <Compile Include="DAO\Interfaces\IRepository.cs" />
     <Compile Include="DAO\Interfaces\IUnitOfWork.cs" />
@@ -401,6 +403,13 @@
     <Content Include="Views\User\NetworkDataInput.cshtml" />
     <Content Include="Views\User\BPNPartialView.cshtml" />
     <Content Include="Views\User\LVQPartialView.cshtml" />
+    <Content Include="Views\ManageTask\Index.cshtml" />
+    <Content Include="Views\ManageTask\EditTask.cshtml" />
+    <Content Include="Views\ManageTask\KerogenPartial.cshtml" />
+    <Content Include="Views\ManageTasks\Index.cshtml" />
+    <Content Include="Views\ManageTasks\ManageData.cshtml" />
+    <Content Include="Views\ManageTasks\EditTask.cshtml" />
+    <Content Include="Views\ManageTasks\KerogensPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

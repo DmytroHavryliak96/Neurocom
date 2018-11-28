@@ -85,6 +85,24 @@ namespace Neurocom.Util
                     );
                 });
 
+            Bind<Func<string, IUnitOfWork, IAnswerService>>().ToMethod(
+                context =>
+                {
+                    return ((tablename, db) =>
+                    {
+                        switch (tablename)
+                        {
+                            case "Kerogens":
+                                return new KerogenAnswerService(db);
+                            case "Layer":
+                                return new LayerAnswerService(db);
+                            default:
+                                throw new ArgumentException("cannot find specified task");
+                        }
+                    }
+                    );
+                });
+
             Bind<Func<NetworkInitializer, IUnitOfWork, IAnswerService>>().ToMethod(
                 context =>
                 {

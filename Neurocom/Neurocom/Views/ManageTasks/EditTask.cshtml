@@ -1,0 +1,33 @@
+﻿@model Neurocom.Models.TaskNetwork
+
+@{
+    ViewBag.Title = "EditTask";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Редагування @Model.Name</h2>
+
+@using (Html.BeginForm("EditTask", "ManageTasks", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorForModel();
+    <div class="editor-label">Зображення</div>
+    <div class="editor-field">
+        @if (Model.ImageData == null)
+        {
+            @:Зображення відсутнє
+ }
+        else
+        {
+            <img width="300" height="200" src="@Url.Action("GetImage", "Branch", new {taskId = Model.Id })" />
+        }
+        <div>
+            Завантажити нове зображення:
+            <input type="file" name="Image" />
+        </div>
+    </div>
+    <input type="submit" value="Зберегти зміни">
+}
+
+<div>
+    @Html.ActionLink("Закрити форму та повернутись до списку задач", "Index")
+</div>

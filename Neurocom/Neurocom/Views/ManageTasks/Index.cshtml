@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Neurocom.Models.TaskNetwork>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Менеджмент задач в системі</h1>
+
+<table class="Grid">
+    <tr>
+        <th>TaskID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>InputData</th>
+        <th>Image</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@Html.ActionLink(item.Name, "EditTask", new { taskId = item.Id })</td>
+            <td>@item.Description</td>
+            <td>@Html.ActionLink(item.TableName, "ManageData", new { tableName = item.TableName })</td>
+            <td>
+                @if (item.ImageData != null)
+            {
+                <div style="float: left; margin-right: 20px">
+                    <img width="300" height="200" src="@Url.Action("GetImage", "Branch", new {taskId = item.Id })" />
+                </div>
+            }
+        </td>
+    </tr>
+    }
+
+</table>

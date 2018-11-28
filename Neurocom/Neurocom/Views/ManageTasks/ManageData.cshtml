@@ -1,0 +1,11 @@
+﻿
+@model IEnumerable<Neurocom.CustomModels.TaskViewModel>
+
+@{
+    ViewBag.Title = "ManageData";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Менеджмент вхідних даних таблиці @ViewBag.tableName</h1>
+
+@Html.Partial((string)ViewBag.tableName + "Partial", Model);
