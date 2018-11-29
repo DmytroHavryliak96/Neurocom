@@ -66,11 +66,11 @@ namespace Neurocom.Controllers.UserControllers
         }
 
         [HttpPost]
-        public ActionResult EditProfile(ApplicationUser _user, HttpPostedFileBase _image)
+        public ActionResult EditProfile(ApplicationUser _user, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                _contrl.EditProfile(_user,_image);
+                _contrl.EditProfile(_user, image);
                return RedirectToAction("Index");
             }
             else
