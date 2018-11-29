@@ -5,10 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Neurocom.DAO.Repositories;
 
 namespace Neurocom.Controllers
 {
@@ -35,9 +37,10 @@ namespace Neurocom.Controllers
             }
         }
 
-        public FileContentResult GetAvatar(int userId)
+        public FileContentResult GetAvatar(string userId)
         {
-            ApplicationUser user = db.Users.Get(userId);
+            var db = new ApplicationUserRepository(new Neurocom.Models.ApplicationDbContext());
+            var user = db.Get(userId);
             if (user != null)
             {
                 return File(user.ImageData, user.ImageMimeType);
