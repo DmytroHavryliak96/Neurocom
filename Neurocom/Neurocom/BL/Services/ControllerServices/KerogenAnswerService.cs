@@ -93,6 +93,7 @@ namespace Neurocom.BL.Services.ControllerServices
                     Oxygen = item.Oxygen,
                     Sulfur = item.Sulfur,
                     Type = item.Type,
+                    TaskName = "Kerogens",
                     Id = item.Id
                 });
 
@@ -112,6 +113,7 @@ namespace Neurocom.BL.Services.ControllerServices
             kerogenModel.Oxygen = kerogen.Oxygen;
             kerogenModel.Sulfur = kerogen.Sulfur;
             kerogenModel.Type = kerogen.Type;
+            kerogenModel.TaskName = "Kerogens";
 
             return kerogenModel;
         }

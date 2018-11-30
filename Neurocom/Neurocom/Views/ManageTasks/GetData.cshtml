@@ -1,0 +1,15 @@
+﻿@model Neurocom.CustomModels.TaskViewModel
+
+@{
+    ViewBag.Title = "GetData";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Редагування запису із таблиці @Model.TaskName, ID = @Model.Id</h1>
+
+@using (Html.BeginForm("EditData", "ManageTasks"))
+{
+    @Html.EditorForModel();
+    <input type="submit" value="Зберегти зміни">
+}
+

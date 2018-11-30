@@ -15,7 +15,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>@Html.ActionLink(item.Id.ToString(), "GetData", Model)</td>
+            <td>@Html.ActionLink(item.Id.ToString(), "GetData", item)</td>
             <td class="NumericCol">@item.Carbon</td>
             <td class="NumericCol">@item.Hydrogen</td>
             <td class="NumericCol">@item.Oxygen</td>
@@ -25,7 +25,8 @@
             <td>
                 @using (Html.BeginForm("DeleteData", "ManageTasks"))
                 {
-                    @Html.Hidden("model", Model)
+                    @Html.Hidden("Id", item.Id)
+                    @Html.Hidden("TaskName", item.TaskName)
                     <input type="submit" value="Видалити" />
                 }
             </td>
@@ -34,6 +35,6 @@
 
 </table>
 <p>
-    @Html.ActionLink("Додати новий запис про кероген", "CreateData", new KerogenViewModel())
+    @Html.ActionLink("Додати новий запис про кероген", "CreateData", new KerogenViewModel { TaskName = "Kerogens", Type = 1})
 </p>
 

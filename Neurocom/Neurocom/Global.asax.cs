@@ -25,6 +25,7 @@ namespace Neurocom
 
             ModelBinders.Binders.Add(new KeyValuePair<Type, IModelBinder>(typeof(InputDataModel), new CustomModelBinder()));
             ModelBinders.Binders.Add(new KeyValuePair<Type, IModelBinder>(typeof(NetworkInitializer), new NetworkBinder()));
+            ModelBinders.Binders.Add(new KeyValuePair<Type, IModelBinder>(typeof(TaskViewModel), new TaskModelBinder()));
 
             NinjectModule neurocomModule = new NeurocomModule("DefaultConnection");
             var kernel = new StandardKernel(neurocomModule);

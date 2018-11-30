@@ -9,7 +9,7 @@ namespace Neurocom.CustomModels
 {
     public abstract class TaskViewModel
     {
-
+        [HiddenInput(DisplayValue = false)]
         public string TaskName { get; set; }
 
         [HiddenInput(DisplayValue = false)]

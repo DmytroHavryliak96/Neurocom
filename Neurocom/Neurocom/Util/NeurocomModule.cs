@@ -94,7 +94,7 @@ namespace Neurocom.Util
                         {
                             case "Kerogens":
                                 return new KerogenAnswerService(db);
-                            case "Layer":
+                            case "Layers":
                                 return new LayerAnswerService(db);
                             default:
                                 throw new ArgumentException("cannot find specified task");

@@ -49,8 +49,9 @@ namespace Neurocom.BL.Services.ControllerServices
                     Clayness = item.Clayness,
                     Porosity = item.Porosity,
                     Type = item.Type,
-                    Id = item.Id
-                });
+                    Id = item.Id,
+                    TaskName = "Layers"
+            });
 
             }
 
@@ -78,6 +79,7 @@ namespace Neurocom.BL.Services.ControllerServices
             layerModel.Clayness = layer.Clayness;
             layerModel.Porosity = layer.Porosity;
             layerModel.Type = layer.Type;
+            layerModel.TaskName = "Layers";
         
             return layerModel;
         }
