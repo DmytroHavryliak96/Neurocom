@@ -306,6 +306,9 @@
     <Content Include="Content\HomeList.css" />
     <Content Include="Content\Images\Abio_theory.png" />
     <Content Include="Content\Images\avatar.PNG" />
+    <Content Include="Content\Images\background1.jpg" />
+    <Content Include="Content\Images\background2.jpg" />
+    <Content Include="Content\Images\background3.jpg" />
     <Content Include="Content\Images\back_propagation.PNG" />
     <Content Include="Content\Images\kerogen.jpg" />
     <Content Include="Content\Images\lvq.PNG" />
@@ -318,6 +321,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Materialize\css\mateiralize.css" />
+    <Content Include="Materialize\css\materialize.min.css" />
+    <Content Include="Materialize\css\style.css" />
+    <Content Include="Materialize\js\init.js" />
+    <Content Include="Materialize\js\materialize.js" />
+    <Content Include="Materialize\js\materialize.min.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -413,6 +422,7 @@
     <Content Include="Views\ManageTasks\KerogensPartial.cshtml" />
     <Content Include="Views\ManageTasks\GetData.cshtml" />
     <Content Include="Views\ManageTasks\LayersPartial.cshtml" />
+    <Content Include="Views\Shared\temporary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

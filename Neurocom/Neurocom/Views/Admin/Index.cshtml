@@ -4,28 +4,112 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<link href="~/Content/HomeList.css" rel="stylesheet" type="text/css" />
-<h1>Головна сторінка адміністратора сайту "NeuroCom"</h1>
-<p class="lead">
-    Тут адміністратор системи може виконати наступні функції:
-    <ul class="list-group">
-        <li class="list-group-item">
-            @Html.ActionLink("Менеджмент користувачів системи", "ManageUsers", "Admin")
-        , де адміністратор може переглянути всіх зареєстрованих користувачів системи, редагувати їхній профіль, видалити конкретних користувачів тощо
-    </li>
-    <li class="list-group-item">
-        @Html.ActionLink("Менеджмент задач для мереж", "Index", "ManageTasks")
-    , де можна редагувати опис доступних задач в системі та змінити вхідні дані для створення мереж
-</li>
-<li class="list-group-item">
-    @Html.ActionLink("Менеджмент створених нейромереж", "Index", "ManageNetworks")
-        , де можна переглядати створені користувачами нейромережі, змінювати загальний опис мереж, фільтрувати користувачів по мережам тощо
-</li>
-<li class="list-group-item">
-    @Html.ActionLink("Менеджмент тестових нейромереж", "Index", "ManageTestNetworks")
-    , де можна переглядати тестові нейромережі, які створив адміністратор, додавати нові тестові мережі для всіх користувачів та видаляти їх
-</li>
-</ul>
-</p>
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <br><br>
+            <h1 class="header center teal-text text-lighten-2">Домашня сторінка адміністратора</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">Сторінка адміністратора розроблена з метою полегшення менеджменту бази даних сайту Neurocom</h5>
+            </div>
+            <div class="row center">
+                <a href="@Url.Action("AddTestNetwork", "ManageTestNetworks")" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Створіть тестову мережу</a>
+            </div>
+            <br><br>
+        </div>
+    </div>
+    <div class="parallax"><img src="~/Content/Images/background1.jpg" alt="Unsplashed background img 1"></div>
+</div>
+
+<div class="container">
+    <div class="section">
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+                    <h5 class="center">Акаунти користувачів</h5>
+                    <p class="light">Перегляньте дані (прізвище+ім'я, дату реєстрації, email) про всіх зареєстрованих користувачів системи, редагуйте власний профіль, видаляйте конкретних користувачів тощо</p>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+                    <h5 class="center">Вхідні дані</h5>
+                    <p class="light">Редагуйте опис доступних задач в системі та змініть вхідні дані для створення мереж</p>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+                    <h5 class="center">Нейромережі</h5>
+                    <p class="light">Переглядайте створені користувачами нейромережі та тестові мережі для незареєстрованих користувачів, додавайте нові тестові мережі для всіх користувачів, змінюйте загальний опис мереж, фільтруйте користувачів по мережам</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light">З легкістю управляйте даними, а саме додавайте нові записи, редагуйте існуючі, фільтруйте інформацію на основі доступних предикатів</h5>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="~/Content/Images/background2.jpg" alt="Unsplashed background img 2"></div>
+</div>
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 center">
+                <h3><i class="mdi-content-send brown-text"></i></h3>
+                <h4>Функціонал адміністратора</h4>
+                <link href="~/Content/HomeList.css" rel="stylesheet" type="text/css" />
+                <p class="lead">
+                    Тут адміністратор системи може виконати наступні функції:
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            @Html.ActionLink("Менеджмент користувачів системи", "ManageUsers", "Admin")
+                            , де адміністратор може переглянути всіх зареєстрованих користувачів системи, редагувати їхній профіль, видалити конкретних користувачів тощо
+                        </li>
+                        <li class="list-group-item">
+                            @Html.ActionLink("Менеджмент задач для мереж", "Index", "ManageTasks")
+                            , де можна редагувати опис доступних задач в системі та змінити вхідні дані для створення мереж
+                        </li>
+                        <li class="list-group-item">
+                            @Html.ActionLink("Менеджмент створених нейромереж", "Index", "ManageNetworks")
+                            , де можна переглядати створені користувачами нейромережі, змінювати загальний опис мереж, фільтрувати користувачів по мережам тощо
+                        </li>
+                        <li class="list-group-item">
+                            @Html.ActionLink("Менеджмент тестових нейромереж", "Index", "ManageTestNetworks")
+                            , де можна переглядати тестові нейромережі, які створив адміністратор, додавати нові тестові мережі для всіх користувачів та видаляти їх
+                        </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h5 class="header col s12 light">Лаконічний опис задач дозволить користувачам краще зрозуміти те, для чого вони створюють нейромережі. Спробуйте змінити опис</h5>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="~/Content/Images/background3.jpg" alt="Unsplashed background img 3"></div>
+</div>
+
+  <!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="~/Materialize/js/materialize.js"></script>
+<script src="~/Materialize/js/init.js"></script>
+
+
+
 
 

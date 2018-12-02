@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+@using Microsoft.AspNet.Identity;
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/MegaMenu.css" rel="stylesheet" type="text/css" />
+    @RenderSection("Scripts", false/*required*/)
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="navbar">
+        @Html.ActionLink("NeuroCom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        @Html.ActionLink("Домашня сторінка адміністратора", "Index", "Admin")
+        <div class="dropdown">
+            <button class="dropbtn">
+                Меню адміністратора
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <div class="header">
+                    <h2>Виберіть категорію</h2>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <a href="@Url.Action("ManageUsers", "Admin")"><h3>Менеджмент користувачів системи</h3></a>
+                        <a href="@Url.Action("CreateUser", "Admin")">Додати нового користувача</a>
+                        <a href="@Url.Action("EditUser", "Admin", new { userId = User.Identity.GetUserId()})">Редагувати персональні дані</a>
+                    </div>
+                    <div class="column">
+                        <a href="@Url.Action("Index", "ManageTasks")"><h3>Менеджмент задач для мереж</h3></a>
+                        <a href="@Url.Action("ManageData", "ManageTasks", new {tablename = "Kerogens" })">Менеджмент вхідних даних задачі про кероген</a>
+                        <a href="@Url.Action("ManageData", "ManageTasks", new {tablename = "Layers"})">Менеджмент вхідних даних задачі про пласт</a>
+                    </div>
+                    <div class="column">
+                        <a href="@Url.Action("Index", "ManageNetworks")"><h3>Менеджмент створених мереж</h3></a>
+                        <a href="@Url.Action("ManageTypes", "ManageNetworks")">Менеджмент типів нейронних мереж</a>
+                        <a href="@Url.Action("ManageNeuralNetworks", "ManageNetworks")">Менеджмент доступних нейронних мереж</a>
+                    </div>
+                    <div class="column">
+                        <a href="@Url.Action("Index", "ManageTestNetworks")"><h3>Менеджмент тестових мереж</h3></a>
+                        <a href="@Url.Action("AddTestNetwork", "ManageTestNetworks")">Додати нову тестову мережу</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link href="~/Content/Admin.css" rel="stylesheet" type="text/css" />
+
+    <div>
+        @if (TempData["message"] != null)
+        {
+            <div class="Message">@TempData["message"]</div>
+        }
+        @RenderBody()
+
+    </div>
+    <footer>
+        <p align="right">&copy; @DateTime.Now.Year - Design by Dmytro Havryliak, PI-14-1</p>
+    </footer>
+</body>
+</html>

@@ -1,50 +1,29 @@
 ﻿<!DOCTYPE html>
-@using Microsoft.AspNet.Identity;
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/MegaMenu.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     @RenderSection("Scripts", false/*required*/)
-    <title>@ViewBag.Title</title>
+    <title>Admin Main Page</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/Materialize/css/mateiralize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="~/Materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 <body>
-    <div class="navbar">
-        @Html.ActionLink("NeuroCom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        @Html.ActionLink("Домашня сторінка адміністратора", "Index", "Admin")
-        <div class="dropdown">
-            <button class="dropbtn">
-                Меню адміністратора
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <div class="header">
-                    <h2>Виберіть категорію</h2>
-                </div>
-                <div class="row">
-                    <div class="column">
-                        <a href="@Url.Action("ManageUsers", "Admin")"><h3>Менеджмент користувачів системи</h3></a>
-                        <a href="@Url.Action("CreateUser", "Admin")">Додати нового користувача</a>
-                        <a href="@Url.Action("EditUser", "Admin", new { userId = User.Identity.GetUserId()})">Редагувати персональні дані</a>
-                    </div>
-                    <div class="column">
-                        <a href="@Url.Action("Index", "ManageTasks")"><h3>Менеджмент задач для мереж</h3></a>
-                        <a href="@Url.Action("ManageData", "ManageTasks", new {tablename = "Kerogens" })">Менеджмент вхідних даних задачі про кероген</a>
-                        <a href="@Url.Action("ManageData", "ManageTasks", new {tablename = "Layers"})">Менеджмент вхідних даних задачі про пласт</a>
-                    </div>
-                    <div class="column">
-                        <a href="@Url.Action("Index", "ManageNetworks")"><h3>Менеджмент створених мереж</h3></a>
-                        <a href="@Url.Action("ManageTypes", "ManageNetworks")">Менеджмент типів нейронних мереж</a>
-                        <a href="@Url.Action("ManageNeuralNetworks", "ManageNetworks")">Менеджмент доступних нейронних мереж</a>
-                    </div>
-                    <div class="column">
-                        <a href="@Url.Action("Index", "ManageTestNetworks")"><h3>Менеджмент тестових мереж</h3></a>
-                        <a href="@Url.Action("AddTestNetwork", "ManageTestNetworks")">Додати нову тестову мережу</a>
-                    </div>
-                </div>
-            </div>
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="@Url.Action("Index", "Home")" class="brand-logo">Neurocom</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="#">Navbar Link</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
-    </div>
-    <link href="~/Content/Admin.css" rel="stylesheet" type="text/css" />
+    </nav>
+  
 
     <div>
         @if (TempData["message"] != null)
@@ -54,8 +33,41 @@
         @RenderBody()
 
     </div>
-    <footer>
-        <p align="right">&copy; @DateTime.Now.Year - Design by Dmytro Havryliak, PI-14-1</p>
+    <footer class="page-footer teal">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Інформація про виконавця</h5>
+                    <p class="grey-text text-lighten-4">Даний проект розробляється студентами групи ІПм-18-1 для покращення навичок веб-програмування та щоб зробити нейромережі доступними для інших</p>
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <p>Виконано студентом групи ІПм-18-1 Гавриляком Дмитром</p>
+            </div>
+        </div>
     </footer>
+
 </body>
 </html>
+
