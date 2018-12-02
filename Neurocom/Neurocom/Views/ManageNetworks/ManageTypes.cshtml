@@ -6,26 +6,34 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Менеджмент типів нейронних мереж</h1>
+<h3>Менеджмент типів нейронних мереж</h3>
+
+<div class="row">
+    <div class="col s8 offset-s2">
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>Type ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@Html.ActionLink(item.Name, "EditType", new { typeId = item.Id })</td>
+                        <td>@item.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
 
 
-<table class="Grid">
-    <tr>
-        <th>Type ID</th>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Id</td>
-            <td>@Html.ActionLink(item.Name, "EditType", new { typeId = item.Id })</td>
-            <td>@item.Description</td>
-        </tr>
-    }
-
-</table>
 <p>
     @Html.ActionLink("Повернутись до списку мереж", "Index", "ManageNetworks");
 </p>

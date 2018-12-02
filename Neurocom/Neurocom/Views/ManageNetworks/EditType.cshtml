@@ -5,15 +5,19 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Редагування @Model.Name</h2>
+<h3 class="center">Редагування @Model.Name</h3>
 
-@using (Html.BeginForm("EditType", "ManageNetworks"))
-{
-    @Html.EditorForModel();
-    <input type="submit" value="Зберегти зміни">
-}
+<div class="row">
+    <div class="col s8 offset-s2">
+        @using (Html.BeginForm("EditType", "ManageNetworks"))
+        {
+            @Html.EditorForModel();
+            <input type="submit" value="Зберегти зміни" class="waves-effect waves-light btn">
+        }
+    </div>
+</div>
 
-<div>
-    @Html.ActionLink("Закрити форму та повернутись до списку типів нейронних мереж", "ManageTypes")
+<div class="center">
+    <h5 class="header col s12">@Html.ActionLink("Закрити форму та повернутись до списку типів нейронних мереж", "ManageTypes")</h5> 
 </div>
 

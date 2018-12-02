@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
+@using Microsoft.AspNet.Identity;
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    @RenderSection("Scripts", false/*required*/)
     <title>Admin Main Page</title>
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,14 +11,29 @@
     <link href="~/Materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 <body>
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="@Url.Action("ManageTypes", "ManageNetworks")">Типи мереж</a></li>
+        <li><a href="@Url.Action("ManageNeuralNetworks", "ManageNetworks")">Доступні мережі</a></li>
+</ul>
     <nav class="white" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="@Url.Action("Index", "Home")" class="brand-logo">Neurocom</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">Navbar Link</a></li>
+                <li><a href="@Url.Action("Index", "Admin")">Домашня сторінка адміністратора</a></li>
+                <li><a href="@Url.Action("ManageUsers", "Admin")">Користувачі</a></li>
+                <li><a href="@Url.Action("Index", "ManageTasks")">Задачі</a></li>
+                <li><a href="@Url.Action("Index", "ManageNetworks")">Створені мережі</a></li>
+                <li><a href="@Url.Action("Index", "ManageTestNetworks")">Тестові мережі</a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Меню<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
             <ul id="nav-mobile" class="sidenav">
-                <li><a href="#">Navbar Link</a></li>
+                <li><a href="@Url.Action("Index", "Admin")">Домашня сторінка адміністратора</a></li>
+                <li><a href="@Url.Action("ManageUsers", "Admin")">Користувачі</a></li>
+                <li><a href="@Url.Action("Index", "ManageTasks")">Задачі</a></li>
+                <li><a href="@Url.Action("Index", "ManageNetworks")">Створені мережі</a></li>
+                <li><a href="@Url.Action("Index", "ManageTestNetworks")">Тестові мережі</a></li>
+                <li><a href="@Url.Action("ManageTypes", "ManageNetworks")">Типи мереж</a></li>
+                <li><a href="@Url.Action("ManageNeuralNetworks", "ManageNetworks")">Доступні мережі</a></li>
             </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
@@ -31,7 +46,12 @@
             <div class="Message">@TempData["message"]</div>
         }
         @RenderBody()
-
+        <!--  Scripts-->
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="~/Materialize/js/materialize.js"></script>
+        <script src="~/Materialize/js/init.js"></script>
+        <script src="~/Materialize/js/dropdown.js"></script>
     </div>
     <footer class="page-footer teal">
         <div class="container">
@@ -41,22 +61,12 @@
                     <p class="grey-text text-lighten-4">Даний проект розробляється студентами групи ІПм-18-1 для покращення навичок веб-програмування та щоб зробити нейромережі доступними для інших</p>
 
                 </div>
-                <div class="col l3 s12">
-                    <h5 class="white-text">Settings</h5>
+                <div class="col l6 s12">
+                    <h5 class="white-text">Корисні посилання</h5>
                     <ul>
-                        <li><a class="white-text" href="#!">Link 1</a></li>
-                        <li><a class="white-text" href="#!">Link 2</a></li>
-                        <li><a class="white-text" href="#!">Link 3</a></li>
-                        <li><a class="white-text" href="#!">Link 4</a></li>
-                    </ul>
-                </div>
-                <div class="col l3 s12">
-                    <h5 class="white-text">Connect</h5>
-                    <ul>
-                        <li><a class="white-text" href="#!">Link 1</a></li>
-                        <li><a class="white-text" href="#!">Link 2</a></li>
-                        <li><a class="white-text" href="#!">Link 3</a></li>
-                        <li><a class="white-text" href="#!">Link 4</a></li>
+                        <li><a class="white-text" href="@Url.Action("EditUser", "Admin", new { userId = User.Identity.GetUserId()})">1. Редагувати персональні дані</a></li>
+                        <li><a class="white-text" href="@Url.Action("ManageData", "ManageTasks", new {tablename = "Kerogens" })">2. Менеджмент вхідних даних задачі про кероген</a></li>
+                        <li><a class="white-text" href="@Url.Action("ManageData", "ManageTasks", new {tablename = "Layers"})">3. Менеджмент вхідних даних задачі про пласт</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,7 +77,6 @@
             </div>
         </div>
     </footer>
-
+   
 </body>
 </html>
-

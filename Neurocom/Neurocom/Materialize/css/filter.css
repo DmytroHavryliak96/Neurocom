@@ -1,0 +1,5 @@
+﻿/* UL padding override - see https://github.com/Dogfalo/materialize/issues/2786#issuecomment-234809753  */
+ul { padding-left: 20px; }
+.btn { font-size: .8em; }
+/* not sure why this is needed... */
+.material-icons { vertical-align: bottom; }

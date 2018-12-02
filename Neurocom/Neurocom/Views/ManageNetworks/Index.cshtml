@@ -5,43 +5,46 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Менеджмент створених нейромереж</h1>
-
-<table class="Grid">
-
-    <tr>
-        <th>Trained Network ID</th>
-        <th>Network Name</th>
-        <th>Network Type</th>
-        <th>User Name</th>
-        <th>Task Name</th>
-        <th class="NumericCol">Created Date</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-
-            <td>@item.TrainedNetworkID</td>
-            <td>@Html.ActionLink(item.NetworkName, "EditNetwork", new { networkId = item.NetworkId })</td>
-            <td>@Html.ActionLink(item.NetworkType, "EditType", new { typeId = item.NetworkTypeId })</td>
-            <td>@Html.ActionLink(item.UserName, "EditUser", "Admin", new { userId = item.UserId }, null)</td>
-            <td>@Html.ActionLink(item.TaskName, "EditTask", "ManageTasks", new { taskId = item.TaskId }, null)</td>
-            <td class="NumericCol">@item.CreatedDate</td>
-            <td>
-                @using (Html.BeginForm("DataInput", "ManageNetworks"))
+<h3 class="center">Менеджмент створених нейромереж</h3>
+<div class="row">
+    <div class="col s8 offset-s2">
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>Trained Network ID</th>
+                    <th>Network Name</th>
+                    <th>Network Type</th>
+                    <th>User Name</th>
+                    <th>Task Name</th>
+                    <th>Created Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
                 {
-                    @Html.Hidden("trainedNetworkId", item.TrainedNetworkID)
-                    <input type="submit" value="Протестувати" />
-                }
-            </td>
-        </tr>
-    }
-</table>
+                    <tr>
 
-<p>
-    @Html.ActionLink("Фільтрація та сортування", "Filter", "ManageNetworks")
-</p>
+                        <td>@item.TrainedNetworkID</td>
+                        <td>@Html.ActionLink(item.NetworkName, "EditNetwork", new { networkId = item.NetworkId })</td>
+                        <td>@Html.ActionLink(item.NetworkType, "EditType", new { typeId = item.NetworkTypeId })</td>
+                        <td>@Html.ActionLink(item.UserName, "EditUser", "Admin", new { userId = item.UserId }, null)</td>
+                        <td>@Html.ActionLink(item.TaskName, "EditTask", "ManageTasks", new { taskId = item.TaskId }, null)</td>
+                        <td class="NumericCol">@item.CreatedDate</td>
+                        <td>
+                            @using (Html.BeginForm("DataInput", "ManageNetworks"))
+                {
+                                @Html.Hidden("trainedNetworkId", item.TrainedNetworkID)
+                                <input type="submit" value="Протестувати" />
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+  
+</div>
+
 
 
 
