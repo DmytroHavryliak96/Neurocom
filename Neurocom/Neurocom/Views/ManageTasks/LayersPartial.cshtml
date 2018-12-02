@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Neurocom.CustomModels.LayerViewModel>
+@using Neurocom.CustomModels
+
+<table class="Grid">
+    <tr>
+        <th>LayerID</th>
+        <th class="NumericCol">Porosity</th>
+        <th class="NumericCol">Clayness</th>
+        <th class="NumericCol">Carbonate</th>
+        <th class="NumericCol">Amplitude</th>
+        <th class="NumericCol">Type</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.Id.ToString(), "GetData", item)</td>
+            <td class="NumericCol">@item.Porosity</td>
+            <td class="NumericCol">@item.Clayness</td>
+            <td class="NumericCol">@item.Carbonate</td>
+            <td class="NumericCol">@item.Amplitude</td>
+            <td class="NumericCol">@item.Type</td>
+            <td>
+                @using (Html.BeginForm("DeleteData", "ManageTasks"))
+                {
+                    @Html.Hidden("Id", item.Id)
+                    @Html.Hidden("TaskName", item.TaskName)
+                    <input type="submit" value="Видалити" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+
+    @Html.ActionLink("Додати новий запис про пласт", "CreateData", new LayerViewModel { TaskName = "Layers", Type = 1 })
+</p>
+

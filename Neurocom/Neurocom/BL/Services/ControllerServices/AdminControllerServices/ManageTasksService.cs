@@ -20,18 +20,6 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
             answerService = answerService_;
         }
 
-        /*   public void EditKerogen(Kerogen kerogen)
-           {
-               Database.Kerogens.Update(kerogen);
-               Database.Save();
-           }
-
-           public void EditLayer(Layer layer)
-           {
-               Database.Layers.Update(layer);
-               Database.Save();
-           }*/
-
         public IEnumerable<TaskNetwork> GetAllTasks()
         {
             return Database.TaskNetworks.GetAll();
@@ -77,53 +65,5 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
             IAnswerService service = answerService(model.TaskName, Database);
             service.DeleteData(model);
         }
-
-     
-
-        /* public IEnumerable<Kerogen> GetAllKerogens()
-         {
-             return Database.Kerogens.GetAll();
-         }
-
-         public IEnumerable<Layer> GetAllLayers()
-         {
-             return Database.Layers.GetAll();
-         }*/
-
-
-
-        /*public Kerogen GetKerogen(int kerogenId)
-        {
-            return Database.Kerogens.Get(kerogenId);
-        }
-
-        public Layer GetLayer(int layerId)
-        {
-            return Database.Layers.Get(layerId);
-        }*/
-
-
-
-        /*public void DeleteKerogen(int kerogenId)
-        {
-            Database.Kerogens.Delete(kerogenId);
-            Database.Save();
-        }
-
-        public Kerogen CreateKerogen()
-        {
-            return new Kerogen();
-        }
-
-        public void DeleteLayer(int layerId)
-        {
-            Database.Layers.Delete(layerId);
-            Database.Save();
-        }
-
-        public Layer CreateLayer()
-        {
-            return new Layer();
-        }*/
     }
 }

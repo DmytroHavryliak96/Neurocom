@@ -412,6 +412,7 @@
     <Content Include="Views\ManageTasks\EditTask.cshtml" />
     <Content Include="Views\ManageTasks\KerogensPartial.cshtml" />
     <Content Include="Views\ManageTasks\GetData.cshtml" />
+    <Content Include="Views\ManageTasks\LayersPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

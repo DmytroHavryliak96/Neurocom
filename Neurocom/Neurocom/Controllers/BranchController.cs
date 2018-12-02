@@ -18,6 +18,10 @@ namespace Neurocom.Controllers
     {
         private IUnitOfWork db;
 
+        public BranchController(IUnitOfWork database)
+        {
+            db = database;
+        }
 
         public ActionResult Index()
         {
