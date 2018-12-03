@@ -5,37 +5,43 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Менеджмент користувачів системи</h1>
-
-
-<table class="Grid">
-    <tr>
-        <th>UserID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th class="NumericCol">Phone number</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Id</td>
-            <td>@Html.ActionLink(item.UserName, "EditUser", new { userId = item.Id })</td>
-            <td>@item.Email</td>
-            <td>@item.Address</td>
-            <td class="NumericCol">@item.PhoneNumber</td>
-            <td>
-                @using (Html.BeginForm("DeleteUser", "Admin"))
+<h3 class="center">Менеджмент користувачів системи</h3>
+<div class="row">
+    <div class="col s8 offset-s2">
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>UserID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th class="NumericCol">Phone number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@Html.ActionLink(item.UserName, "EditUser", new { userId = item.Id })</td>
+                        <td>@item.Email</td>
+                        <td>@item.Address</td>
+                        <td class="NumericCol">@item.PhoneNumber</td>
+                        <td>
+                            @using (Html.BeginForm("DeleteUser", "Admin"))
                 {
-                    @Html.Hidden("userId", item.Id)
-                    <input type="submit" value="Видалити" />
+                                @Html.Hidden("userId", item.Id)
+                                <input type="submit" value="Видалити" class="waves-effect waves-light btn" />
+                            }
+                        </td>
+                    </tr>
                 }
-            </td>
-        </tr>
-    }
+            </tbody>
 
-</table>
-<p>
-    @Html.ActionLink("Додати нового користувача", "CreateUser")
-</p>
+        </table>
+      
+    </div>
+</div>
+<div class="center">
+    <h5 class="header col s12">@Html.ActionLink("Додати нового користувача", "CreateUser")</h5>
+</div>
