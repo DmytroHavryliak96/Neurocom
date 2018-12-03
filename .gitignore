@@ -4,6 +4,10 @@ bin
 
 obj
 
+.mdf
+
+.ldf
+
 packages
 
 #NuGet
