@@ -9,8 +9,6 @@
     <p>@Html.TextBoxFor(m => m.minError, new { type = "number", min = "0.001", max = "0.9", step = "0.001", Value = "0.001", required = "required", style = "width:176px" })</p>
     @Html.Hidden("taskName", Model.taskName)
     @Html.Hidden("networkName", Model.networkName)
-    @Html.Hidden("answers", Model.answers)
-    @Html.Hidden("patterns", Model.patterns)
     @Html.Hidden("numOfClusters", Model.numOfClusters)
     <input type="submit" value="Створити мережу">
 }
