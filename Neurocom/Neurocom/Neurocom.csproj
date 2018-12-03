@@ -261,6 +261,7 @@
     <Compile Include="BL\Services\LVQLayerService.cs" />
     <Compile Include="BL\Services\LVQService.cs" />
     <Compile Include="BL\Services\NetworkInitializer.cs" />
+    <Compile Include="BL\Services\SimpleUserService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminControllers\AdminController.cs" />
     <Compile Include="Controllers\AdminControllers\ManageNetworksController.cs" />
