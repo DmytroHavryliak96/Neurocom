@@ -5,28 +5,32 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h3>Менеджмент доступних нейронних мереж</h3>
+<h3 class="center">Менеджмент доступних нейронних мереж</h3>
 
+<div class="row">
+    <div class="col s6 offset-s3">
+        <table class="highlight">
+            <tr>
+                <th>Network ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Network Type</th>
+            </tr>
 
-<table class="Grid">
-    <tr>
-        <th>Network ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Network Type</th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@Html.ActionLink(item.Name, "EditNetwork", new { networkId = item.Id })</td>
+                    <td>@item.Description</td>
+                    <td>@item.NetworkType.Name</td>
+                </tr>
+            }
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Id</td>
-            <td>@Html.ActionLink(item.Name, "EditNetwork", new { networkId = item.Id })</td>
-            <td>@item.Description</td>
-            <td>@item.NetworkType.Name</td>
-        </tr>
-    }
+        </table>
+    </div>
+</div>
 
-</table>
-<p>
-    @Html.ActionLink("Повернутись до списку навчених мереж", "Index", "ManageNetworks")
-</p>
+<div class="center">
+    <h5 class="header col s12">@Html.ActionLink("Повернутись до списку навчених мереж", "Index", "ManageNetworks")</h5>
+</div>
