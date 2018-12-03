@@ -11,7 +11,7 @@ using Neurocom.DAO.Repositories;
 
 namespace Neurocom.BL.Services.ControllerServices.UserControllerServices
 {
-    public class UserService : IUserController
+    public class IUserService : IUserController
     {
         private IUnitOfWork database;
 
@@ -25,7 +25,7 @@ namespace Neurocom.BL.Services.ControllerServices.UserControllerServices
         private Func<NetworkInitializer, IAnswerService, NetworkInitializer> _initializerTypeResolver;
         private Func<NetworkInitializer, IUnitOfWork, IAnswerService> _answerForTraining;
 
-        public UserService(IUnitOfWork  db, Func<TrainedNetwork, InputDataModel> input, IInputConverter converter_, 
+        public IUserService(IUnitOfWork  db, Func<TrainedNetwork, InputDataModel> input, IInputConverter converter_, 
             Func<InputDataModel, IUnitOfWork, IAnswerService> answer, ITestNetwork test, Func<NetworkTaskViewModel, IUnitOfWork, IAnswerService> answerResolverCreate,
             Func<NetworkTaskViewModel, IAnswerService, NetworkInitializer> resolver, Func<NetworkInitializer, IAnswerService, NetworkInitializer> init,
             Func<NetworkInitializer, IUnitOfWork, IAnswerService> trainingAnswer, ITrainNetworkService trainService)
