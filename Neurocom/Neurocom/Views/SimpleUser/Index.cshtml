@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Neurocom.ViewModels.AdminViewModels.NetworkViewModel>
+@{
+    ViewBag.Title = "TestNetworks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 align="center">Доступні тестові мережі</h1>
+<div class="container">
+    <table align="center" class="table-condensed" id="table_id">
+        <thead>
+            <tr>
+                <th>Id мережі</th>
+                <th>Назва мережі</th>
+                <th>Тип мереж</th>
+                <th>Назва завдання</th>
+                <th>Дата створення мережі</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TrainedNetworkID</td>
+                    <td>@item.NetworkName</td>
+                    <td>@item.NetworkType</td>
+                    <td>@item.TaskName</td>
+                    <td>@item.CreatedDate</td>
+                    <td>
+                        @using (Html.BeginForm("SimpleDataInput", "SimpleUser"))
+                        {
+                            @Html.Hidden("trainedNetworkId", item.TrainedNetworkID)
+                            <input type="submit" value="Протестувати" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

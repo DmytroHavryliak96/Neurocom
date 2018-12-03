@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Neurocom.Models.TaskNetwork>
+@{
+    ViewBag.Title = "tasks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 align="center">Наявні задачі</h2>
+<table align="center" class="table">
+    <tr>
+        <th>№</th>
+        <th>Назва задачі</th>
+        <th>Опис задачі</th>
+        <th>Зображення</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>
+                @if (item.ImageData != null)
+                {
+                    <div style="float: left; margin-right: 20px">
+                        <img width="200" height="150" src="@Url.Action("GetImage", "Branch", new {taskId = item.Id })" />
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+</table>
+<

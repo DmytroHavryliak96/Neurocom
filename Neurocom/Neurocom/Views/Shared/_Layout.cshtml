@@ -3,12 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title Нейромережі - це просто </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
-<body>
+<body style="background-image:url(../../Content/Images/bg-blur.jpg)">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,13 +16,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("NeuroCom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <ul class="nav navbar-nav navbar-left">
+                    <!--<li>@Html.ActionLink("Home", "Index", "Home")</li>-->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Галузі
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!--li>@Html.ActionLink("Contact","Contact","Home")</li>
+                            <li><a href="#">Нафтогазова</a></li>-->
+                            <li>@Html.ActionLink("Нафтогазова", "TaskList", "SimpleUser")</li>
+                            <li><a href="#">Екологія</a></li>
+                            <li><a href="#">Охорона здоров'я</a></li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Про нас", "About", "Home")</li>
+                    <li>@Html.ActionLink("Зв'язатись з нами", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -33,10 +45,9 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p align="right">&copy; @DateTime.Now.Year - Design by Luibomyr Demchuk</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

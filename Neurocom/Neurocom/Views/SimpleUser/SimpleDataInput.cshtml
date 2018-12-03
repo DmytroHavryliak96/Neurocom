@@ -1,0 +1,12 @@
+﻿@model Neurocom.CustomModels.InputDataModel
+
+@{
+    ViewBag.Title = "SimpleDataInput";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SimpleDataInput</h2>
+
+<h2>Введення вхідних даних для тестування задачі @Model.taskName</h2>
+
+@Html.Partial(Model.taskName + "InputPartial", Model)

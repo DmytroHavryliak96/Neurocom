@@ -1,0 +1,27 @@
+﻿@model Neurocom.CustomModels.LayerInput
+
+@using (Html.BeginForm("CreateInput", "SimpleUser"))
+{
+    <div class="col-md-4">
+        <h5>Пористість</h5>
+        <br />
+        <h5>Глинистість</h5>
+        <br />
+        <h5>Карбонатність</h5>
+        <br />
+        <h5>Амплітуда</h5>
+    </div>
+
+    <p>@Html.TextBoxFor(m => m.Porosity, new { type = "number", min = "0", max = "1", step = "0.001", required = "required", style = "width:176px" })</p>
+    <br />
+    <p>@Html.TextBoxFor(m => m.Clayness, new { type = "number", min = "0", max = "1", step = "0.001", required = "required", style = "width:176px" })</p>
+    <br />
+    <p>@Html.TextBoxFor(m => m.Carbonate, new { type = "number", min = "0", max = "1", step = "0.001", required = "required", style = "width:176px" })</p>
+    <br />
+    <p>@Html.TextBoxFor(m => m.Amplitude, new { type = "number", min = "0", max = "1", step = "0.001", required = "required", style = "width:176px" })</p>
+    @Html.Hidden("taskName", Model.taskName)
+    @Html.Hidden("trainedNetworkId", Model.trainedNetworkId)
+    <input type="submit" value="Протестувати">
+}
+
+<p>@Model.answer</p>

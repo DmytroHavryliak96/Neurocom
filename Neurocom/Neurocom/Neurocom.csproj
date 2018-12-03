@@ -270,6 +270,7 @@
     <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SimpleUserControllers\SimpleUserController.cs" />
     <Compile Include="Controllers\UserControllers\UserController.cs" />
     <Compile Include="CustomModels\CustomModelBinder.cs" />
     <Compile Include="CustomModels\InputDataModel.cs" />
@@ -323,6 +324,7 @@
     <Content Include="Content\Images\background2.jpg" />
     <Content Include="Content\Images\background3.jpg" />
     <Content Include="Content\Images\back_propagation.PNG" />
+    <Content Include="Content\Images\bg-blur.jpg" />
     <Content Include="Content\Images\kerogen.jpg" />
     <Content Include="Content\Images\lvq.PNG" />
     <Content Include="Content\Images\menu-icon-12.png" />
@@ -444,6 +446,12 @@
     <Content Include="Views\ManageTasks\GetData.cshtml" />
     <Content Include="Views\ManageTasks\LayersPartial.cshtml" />
     <Content Include="Views\Shared\temporary.cshtml" />
+    <Content Include="Views\SimpleUser\SimpleDataInput.cshtml" />
+    <Content Include="Views\SimpleUser\Index.cshtml" />
+    <Content Include="Views\SimpleUser\KerogenInputPartial.cshtml" />
+    <Content Include="Views\SimpleUser\LayerInputPartial.cshtml" />
+    <Content Include="Views\SimpleUser\DataInput.cshtml" />
+    <Content Include="Views\SimpleUser\TaskList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
