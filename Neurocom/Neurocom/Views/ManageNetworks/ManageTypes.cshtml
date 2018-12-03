@@ -6,10 +6,10 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h3 class="">Менеджмент типів нейронних мереж</h3>
+<h3 class="center">Менеджмент типів нейронних мереж</h3>
 
 <div class="row">
-    <div class="col s8 offset-s2">
+    <div class="col s6 offset-s3">
         <table class="highlight">
             <thead>
                 <tr>
@@ -32,8 +32,6 @@
 
     </div>
 </div>
-
-
-<p>
-    @Html.ActionLink("Повернутись до списку мереж", "Index", "ManageNetworks");
-</p>
+<div class="center">
+    <h5 class="header col s12">@Html.ActionLink("Повернутись до списку мереж", "Index", "ManageNetworks")</h5>
+</div>
