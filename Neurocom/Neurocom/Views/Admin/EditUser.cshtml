@@ -13,19 +13,19 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "validate" })
             <div class="form-group">
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "validate" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "validate" })
                 </div>
             </div>
             @Html.HiddenFor(model => model.Id)
@@ -34,7 +34,7 @@
                 @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "validate" })
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
                 @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "validate" })
                 </div>
             </div>
 
@@ -53,14 +53,14 @@
             </div>
 
             <div class="editor-label">Зображення</div>
-            <div class="center">
+            <div>
                 @if (Model.ImageData == null)
                 {
-                    <img class="materialboxed"  width="300" height="200" src="~/Content/Images/avatar.PNG" />
+                    <img class="materialboxed"  width="300"  src="~/Content/Images/avatar.PNG" />
                 }
                 else
                 {
-                    <img width="300" height="200" src="@Url.Action("GetAvatar", "Branch", new {userId = Model.Id })" />
+                    <img class="materialboxed" width="300"  src="@Url.Action("GetAvatar", "Branch", new {userId = Model.Id })" />
                 }
                 <div>
                     Завантажити нову аватарку:
@@ -86,5 +86,6 @@
 
     </div>
 </div>
+
 
 

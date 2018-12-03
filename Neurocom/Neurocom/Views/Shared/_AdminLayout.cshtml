@@ -19,7 +19,7 @@
         <div class="nav-wrapper container">
             <a id="logo-container" href="@Url.Action("Index", "Home")" class="brand-logo">Neurocom</a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="@Url.Action("Index", "Admin")">Домашня сторінка адміністратора</a></li>
+                <li><a href="@Url.Action("Index", "Admin")">Домашня сторінка</a></li>
                 <li><a href="@Url.Action("ManageUsers", "Admin")">Користувачі</a></li>
                 <li><a href="@Url.Action("Index", "ManageTasks")">Задачі</a></li>
                 <li><a href="@Url.Action("Index", "ManageNetworks")">Створені мережі</a></li>
@@ -27,7 +27,7 @@
                 <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Меню<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
             <ul id="nav-mobile" class="sidenav">
-                <li><a href="@Url.Action("Index", "Admin")">Домашня сторінка адміністратора</a></li>
+                <li><a href="@Url.Action("Index", "Admin")">Домашня сторінка</a></li>
                 <li><a href="@Url.Action("ManageUsers", "Admin")">Користувачі</a></li>
                 <li><a href="@Url.Action("Index", "ManageTasks")">Задачі</a></li>
                 <li><a href="@Url.Action("Index", "ManageNetworks")">Створені мережі</a></li>
@@ -46,7 +46,6 @@
             <div class="Message">@TempData["message"]</div>
         }
         @RenderBody()
-        <!--  Scripts-->
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="~/Materialize/js/materialize.js"></script>
