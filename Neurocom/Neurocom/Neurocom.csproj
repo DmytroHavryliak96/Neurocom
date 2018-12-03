@@ -423,7 +423,6 @@
     <Content Include="Views\ManageTestNetworks\ChooseNetworkType.cshtml" />
     <Content Include="Views\ManageTestNetworks\NetworkDataInput.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\TastList.cshtml" />
     <Content Include="Views\User\NetworkList.cshtml" />
     <Content Include="Views\User\TestNetworks.cshtml" />
     <Content Include="Views\User\EditProfile.cshtml" />
