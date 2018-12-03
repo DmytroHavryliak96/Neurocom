@@ -65,5 +65,10 @@ namespace Neurocom.BL.Services.ControllerServices.AdminControllerServices
             IAnswerService service = answerService(model.TaskName, Database);
             service.DeleteData(model);
         }
+
+        public void Dispose()
+        {
+            Database.Dispose();
+        }
     }
 }

@@ -5,22 +5,21 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Ведденя вхідних даних для тестування задачі @Model.taskName</h2>
+<h3 class="center">Ведденя вхідних даних для тестування задачі @Model.taskName</h3>
 
-
-    @using (Html.BeginForm("CreateInput", "ManageNetworks"))
-    {
-        @Html.EditorForModel();
-        <input type="submit" value="Протестувати">
-    }
-
-    <p>@Model.answer</p>
-
-
-<div>
-    @Html.ActionLink("Закрити форму та повернутись до списку створених нейронних мереж", "Index")
+<div class="row">
+    <div class="col s6 offset-s3">
+        @using (Html.BeginForm("CreateInput", "ManageNetworks"))
+        {
+            @Html.EditorForModel();
+            <input type="submit" value="Протестувати" class="waves-effect waves-light btn">
+        }
+    </div>
+</div>
+   
+<div class="center">
+    <h6 class="header col s12">@Model.answer</h6>
+    <h5 class="header col s12">@Html.ActionLink("Закрити форму та повернутись до списку створених нейронних мереж", "Index")</h5>
+    <h5 class="header col s12">@Html.ActionLink("Закрити форму та повернутись до списку тестових нейронних мереж", "Index", "ManageTestNetworks")</h5>
 </div>
 
-<div>
-    @Html.ActionLink("Закрити форму та повернутись до списку тестових нейронних мереж", "Index", "ManageTestNetworks")
-</div>

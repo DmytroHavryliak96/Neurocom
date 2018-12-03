@@ -81,6 +81,11 @@ namespace Neurocom.Controllers.AdminControllers
             return RedirectToAction("ManageData", "ManageTasks", new { tableName = model.TaskName });
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            taskService.Dispose();
+            base.Dispose(disposing);
+        }
 
 
 

@@ -6,6 +6,11 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Менеджмент вхідних даних таблиці @ViewBag.tableName</h1>
+<h3 class="center">Менеджмент вхідних даних таблиці @ViewBag.tableName</h3>
 
-@Html.Partial((string)ViewBag.tableName + "Partial", Model);
+<div class="row">
+    <div class="col s6 offset-s3">
+       @Html.Partial((string)ViewBag.tableName + "Partial", Model)
+    </div>
+</div>
+

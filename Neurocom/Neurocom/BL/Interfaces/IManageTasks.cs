@@ -20,21 +20,6 @@ namespace Neurocom.BL.Interfaces
         void UpdateData(TaskViewModel model);
         void DeleteData(TaskViewModel model);
 
-
-       /* IEnumerable<Kerogen> GetAllKerogens();
-        Kerogen GetKerogen(int kerogenId);
-        void EditKerogen(Kerogen kerogen);
-        void DeleteKerogen(int kerogenId);
-        Kerogen CreateKerogen();
-
-
-        IEnumerable<Layer> GetAllLayers();
-        Layer GetLayer(int layerId);
-        void EditLayer(Layer layer);
-        void DeleteLayer(int layerId);
-        Layer CreateLayer();*/
-
-
-
+        void Dispose();
     }
 }
