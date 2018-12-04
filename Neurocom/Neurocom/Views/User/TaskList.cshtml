@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>задачі</h2>
+<h2>Список задач</h2>
 
-<table class="Grid">
+<table class="table">
     <tr>
-        <th>TaskID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Image</th>
+        <th>№</th>
+        <th>Назва</th>
+        <th>Опис</th>
+        <th>Зображення</th>
     </tr>
     @foreach (var item in Model)
     {

@@ -5,16 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>NetworkList</h2>
+<h2>Список мереж</h2>
 
-
-<table class="Grid">
+<table class="table-bordered">
     <tr>
-        <th>NetworkName</th>
-        <th>NetworkType</th>
-        <th>TypeDescription</th>
-        <th>NetworkDescription</th>
-        <th>Image</th>
+        <th>Назва мережі</th>
+        <th>Тип</th>
+        <th>Опис типу</th>
+        <th>Опис мережі</th>
+        <th>Зображення</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -26,15 +25,16 @@
             <td>
                 @if (item.NetworkName.Equals("BPN"))
                 {
-                    <img src="~/Content/Images/back_propagation.PNG">
+                    <img height="200" width="300" src="~/Content/Images/back_propagation.PNG">
                 }
                 else
                 {
-                    <img src="~/Content/Images/lvq.PNG">
+                    <img height="200" width="300" src="~/Content/Images/lvq.PNG">
                 }
-
             </td>
         </tr>
     }
-
 </table>
+<div>
+    @Html.ActionLink("Повернутись до особистого кабінету", "Index")
+</div>
