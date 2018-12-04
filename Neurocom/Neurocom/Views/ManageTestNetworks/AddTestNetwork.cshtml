@@ -5,37 +5,43 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Вибір задачі</h2>
+<h3 class="center">Вибір задачі</h3>
 
-<table class="Grid">
-    <tr>
-        <th>TaskID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Image</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Id</td>
-            <td>@item.Name</td>
-            <td>@item.Description</td>
-            <td>
-                @if (item.ImageData != null)
+<div class="row">
+    <div class="col s10 offset-s1">
+        <table class="highlight">
+            <tr>
+                <th>TaskID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>
+                        @if (item.ImageData != null)
                 {
-                    <div style="float: left; margin-right: 20px">
-                        <img width="300" height="200" src="@Url.Action("GetImage", "Branch", new {taskId = item.Id })" />
-                    </div>
-                }
-            <td>
-                @using (Html.BeginForm("ChooseNetworkType", "ManageTestNetworks"))
+                            <div style="float: left; margin-right: 20px">
+                                <img width="300" height="200" src="@Url.Action("GetImage", "Branch", new {taskId = item.Id })" />
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("ChooseNetworkType", "ManageTestNetworks"))
                 {
-                    @Html.Hidden("taskId", item.Id)
-                    <input type="submit" value="Створити мережу" />
-                }
-            </td>
-            </td>
-        </tr>
-    }
+                            @Html.Hidden("taskId", item.Id)
+                            <input type="submit" value="Створити мережу" class="waves-effect waves-light btn" />
+                        }
 
-</table>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

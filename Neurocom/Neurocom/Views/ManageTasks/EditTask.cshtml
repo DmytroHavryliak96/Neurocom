@@ -5,29 +5,41 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Редагування @Model.Name</h2>
-
-@using (Html.BeginForm("EditTask", "ManageTasks", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.EditorForModel();
-    <div class="editor-label">Зображення</div>
-    <div class="editor-field">
-        @if (Model.ImageData == null)
+<h3 class="center">Редагування @Model.Name</h3>
+<div class="row">
+    <div class="col s6 offset-s3">
+        @using (Html.BeginForm("EditTask", "ManageTasks", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @:Зображення відсутнє
+            @Html.EditorForModel();
+            <div class="editor-label">Зображення</div>
+            <div class="editor-field">
+                @if (Model.ImageData == null)
+                {
+                    @:Зображення відсутнє
  }
-        else
-        {
-            <img width="300" height="200" src="@Url.Action("GetImage", "Branch", new {taskId = Model.Id })" />
+                else
+                {
+                    <img width="300" height="200" src="@Url.Action("GetImage", "Branch", new {taskId = Model.Id })" />
+                }
+                <div>
+                    Завантажити нове зображення:
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Файл</span>
+                            <input type="file" name="image">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Зберегти зміни" class="waves-effect waves-light btn">
         }
-        <div>
-            Завантажити нове зображення:
-            <input type="file" name="image" />
-        </div>
     </div>
-    <input type="submit" value="Зберегти зміни">
-}
+</div>
 
-<div>
-    @Html.ActionLink("Закрити форму та повернутись до списку задач", "Index")
+<div class="center">
+    <h5 class="header col s12">@Html.ActionLink("Закрити форму та повернутись до списку задач", "Index")</h5>
+
 </div>

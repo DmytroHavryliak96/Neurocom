@@ -5,11 +5,16 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Ведденя вхідних даних для створення нейронної мережі @Model.networkName</h2>
+<h3 class="center">Ведденя вхідних даних для створення нейронної мережі @Model.networkName</h3>
 
-    @using (Html.BeginForm("CreateInput", "ManageTestNetworks"))
-    {
-        @Html.EditorForModel();
-        <input type="submit" value="Створити мережу">
-    }
+<div class="row">
+    <div class="col s6 offset-s3">
+        @using (Html.BeginForm("CreateInput", "ManageTestNetworks"))
+        {
+            @Html.EditorForModel();
+            <input type="submit" value="Створити мережу" class="waves-effect waves-light btn">
+        }
+    </div>
+</div>
+   
 

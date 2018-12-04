@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Neurocom.CustomModels.KerogenViewModel>
 @using Neurocom.CustomModels
 
-<table class="Grid">
+<table class="highlight">
     <tr>
         <th>KerogenID</th>
         <th class="NumericCol">Carbon</th>
@@ -27,14 +27,15 @@
                 {
                     @Html.Hidden("Id", item.Id)
                     @Html.Hidden("TaskName", item.TaskName)
-                    <input type="submit" value="Видалити" />
+                    <input type="submit" value="Видалити" class="waves-effect waves-light btn" />
                 }
             </td>
         </tr>
     }
 
 </table>
-<p>
-   
- @Html.ActionLink("Додати новий запис про кероген", "CreateData", new KerogenViewModel { TaskName = "Kerogens", Type = 1})
-</p>
+
+<div class="center">
+    <h5 class="header col s12">@Html.ActionLink("Додати новий запис про кероген", "CreateData", new KerogenViewModel { TaskName = "Kerogens", Type = 1 })</h5>
+
+</div>

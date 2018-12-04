@@ -57,14 +57,20 @@ namespace Neurocom.Controllers.AdminControllers
             }
         }
 
-        /***********************************/
-        // додавання нової мережі юзера
+        [HttpPost]
+        public ActionResult DeleteNetwork(int testNetworkId)
+        {
+            testService.DeleteTestNetwork(testNetworkId);
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
             testService.Dispose();
             base.Dispose(disposing);
         }
+
+        
 
     }
 }

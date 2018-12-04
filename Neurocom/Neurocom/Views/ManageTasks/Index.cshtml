@@ -5,32 +5,41 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Менеджмент задач в системі</h1>
+<h3 class="center">Менеджмент задач в системі</h3>
 
-<table class="Grid">
-    <tr>
-        <th>TaskID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>InputData</th>
-        <th>Image</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Id</td>
-            <td>@Html.ActionLink(item.Name, "EditTask", new { taskId = item.Id })</td>
-            <td>@item.Description</td>
-            <td>@Html.ActionLink(item.TableName, "ManageData", new { tableName = item.TableName })</td>
-            <td>
-                @if (item.ImageData != null)
-            {
-                <div style="float: left; margin-right: 20px">
-                    <img width="300" height="200" src="@Url.Action("GetImage", "Branch", new {taskId = item.Id })" />
-                </div>
-            }
-        </td>
-    </tr>
-    }
+<div class="row">
+    <div class="col s8 offset-s2">
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>TaskID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>InputData</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@Html.ActionLink(item.Name, "EditTask", new { taskId = item.Id })</td>
+                        <td>@item.Description</td>
+                        <td>@Html.ActionLink(item.TableName, "ManageData", new { tableName = item.TableName })</td>
+                        <td>
+                            @if (item.ImageData != null)
+                {
+                                <div style="float: left; margin-right: 20px">
+                                    <img width="150" height="150" src="@Url.Action("GetImage", "Branch", new {taskId = item.Id })" />
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
-</table>
+

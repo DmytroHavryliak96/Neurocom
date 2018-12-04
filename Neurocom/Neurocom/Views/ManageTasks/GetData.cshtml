@@ -5,11 +5,16 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Редагування запису із таблиці @Model.TaskName, ID = @Model.Id</h1>
+<h3 class="center">Редагування запису із таблиці @Model.TaskName, ID = @Model.Id</h3>
 
-@using (Html.BeginForm("EditData", "ManageTasks"))
-{
-    @Html.EditorForModel();
-    <input type="submit" value="Зберегти зміни">
-}
+<div class="row">
+    <div class="col s6 offset-s3">
+       @using (Html.BeginForm("EditData", "ManageTasks"))
+       {
+        @Html.EditorForModel();
+        <input type="submit" value="Зберегти зміни" class="waves-effect waves-light btn">
+       }
+    </div>
+</div>
+
 
