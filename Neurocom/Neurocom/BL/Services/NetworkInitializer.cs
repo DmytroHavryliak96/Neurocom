@@ -60,6 +60,11 @@ namespace Neurocom.BL.Services
 
     }
 
+    public class GeneticBPN : BPNInitializer
+    {
+
+    }
+
     public class LVQInitializer : NetworkInitializer
     {
         [Range(0.5, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]

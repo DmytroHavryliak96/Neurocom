@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -257,6 +258,7 @@
     <Compile Include="BL\Services\ControllerServices\TestNetworkService.cs" />
     <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
     <Compile Include="BL\Services\ControllerServices\UserControllerServices\UserService.cs" />
+    <Compile Include="BL\Services\GeneticBPNKerogen.cs" />
     <Compile Include="BL\Services\LVQKerogenService.cs" />
     <Compile Include="BL\Services\LVQLayerService.cs" />
     <Compile Include="BL\Services\LVQService.cs" />
@@ -325,6 +327,7 @@
     <Content Include="Content\Images\background3.jpg" />
     <Content Include="Content\Images\back_propagation.PNG" />
     <Content Include="Content\Images\bg-blur.jpg" />
+    <Content Include="Content\Images\Genetic.jpg" />
     <Content Include="Content\Images\kerogen.jpg" />
     <Content Include="Content\Images\lvq.PNG" />
     <Content Include="Content\Images\menu-icon-12.png" />
@@ -463,6 +466,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeneticAlgorithm\GeneticAlgorithm.csproj">
+      <Project>{e4ec3712-723f-48e8-a201-8aba910bca51}</Project>
+      <Name>GeneticAlgorithm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeuronDotNet Source\Core\Core.csproj">
+      <Project>{d5b56684-0c33-4195-b3d6-d1576b739e42}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
