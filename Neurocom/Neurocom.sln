@@ -1,13 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neurocom", "Neurocom\Neurocom.csproj", "{308DE777-5031-4BC9-8813-F619BF7A5014}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "NeuronDotNet Source\Core\Core.csproj", "{D5B56684-0C33-4195-B3D6-D1576B739E42}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticAlgorithm", "GeneticAlgorithm\GeneticAlgorithm.csproj", "{E4EC3712-723F-48E8-A201-8ABA910BCA51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,19 +15,8 @@ Global
 		{308DE777-5031-4BC9-8813-F619BF7A5014}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{308DE777-5031-4BC9-8813-F619BF7A5014}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{308DE777-5031-4BC9-8813-F619BF7A5014}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D5B56684-0C33-4195-B3D6-D1576B739E42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D5B56684-0C33-4195-B3D6-D1576B739E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D5B56684-0C33-4195-B3D6-D1576B739E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D5B56684-0C33-4195-B3D6-D1576B739E42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4EC3712-723F-48E8-A201-8ABA910BCA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4EC3712-723F-48E8-A201-8ABA910BCA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4EC3712-723F-48E8-A201-8ABA910BCA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4EC3712-723F-48E8-A201-8ABA910BCA51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {24BBB83D-D115-479E-BE9E-52BFD98FBED3}
 	EndGlobalSection
 EndGlobal
