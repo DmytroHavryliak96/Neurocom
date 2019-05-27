@@ -580,6 +580,22 @@ namespace Neurocom.BL.NetworkLibrary
             return array;
         }
 
+        // Функція встановлення ваг
+        public void SetWeights(double[] weights)
+        {
+            int counter = 0;
+            for (int l = 0; l < layerCount; l++)
+            {
+                for (int i = 0; i < (l == 0 ? inputSize : layerSize[l - 1]); i++)
+                {
+                    for (int j = 0; j < layerSize[l]; j++)
+                    {
+                        weight[l][i][j] = weights[counter++];
+                    }
+                }
+            }
+        }
+
         // Функція для парсингу xml-документа
         private string xPathValue(string xPath)
         {

@@ -235,6 +235,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BL\Interfaces\IAdminService.cs" />
     <Compile Include="BL\Interfaces\IAnswerServise.cs" />
+    <Compile Include="BL\Interfaces\IGeneticService.cs" />
     <Compile Include="BL\Interfaces\IInputConverter.cs" />
     <Compile Include="BL\Interfaces\IManageNetwork.cs" />
     <Compile Include="BL\Interfaces\IManageTasks.cs" />
@@ -258,6 +259,9 @@
     <Compile Include="BL\Services\ControllerServices\TestNetworkService.cs" />
     <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
     <Compile Include="BL\Services\ControllerServices\UserControllerServices\UserService.cs" />
+    <Compile Include="BL\Services\GeneticServices\GeneticBPNKerogenService.cs" />
+    <Compile Include="BL\Services\GeneticServices\GeneticBPNLayerService.cs" />
+    <Compile Include="BL\Services\GeneticServices\GeneticService.cs" />
     <Compile Include="BL\Services\LVQKerogenService.cs" />
     <Compile Include="BL\Services\LVQLayerService.cs" />
     <Compile Include="BL\Services\LVQService.cs" />
@@ -326,6 +330,7 @@
     <Content Include="Content\Images\background3.jpg" />
     <Content Include="Content\Images\back_propagation.PNG" />
     <Content Include="Content\Images\bg-blur.jpg" />
+    <Content Include="Content\Images\Genetic.jpg" />
     <Content Include="Content\Images\kerogen.jpg" />
     <Content Include="Content\Images\lvq.PNG" />
     <Content Include="Content\Images\menu-icon-12.png" />

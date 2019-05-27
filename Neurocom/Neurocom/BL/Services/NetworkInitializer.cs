@@ -57,7 +57,45 @@ namespace Neurocom.BL.Services
 
         }
 
+        public BPNInitializer(double Momentum, int parameters, int hidden)
+        {
+            this.Momentum = Momentum;
+            this.parameters = parameters;
+            this.hidden = hidden;
+            this.learningRate = 0.1;
+            this.minError = 0.001;
+        }
 
+
+    }
+
+    public class GeneticInitializer : BPNInitializer
+    {
+        [Range(0.1, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        public double Crossover { get; set; }
+
+        [Range(0.01, 0.05, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        public double MutationRate { get; set; }
+
+        [Range(100, 200, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        public int PopulationSize { get; set; }
+
+        [Range(100, 200, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        public int Iterations { get; set; }
+
+        public GeneticInitializer(double Momentum, int parameters, int hidden, double crossover, double mutationRate, int populationSize, int iterations)
+            : base(Momentum, parameters, hidden)
+        {
+            Crossover = crossover;
+            MutationRate = mutationRate;
+            PopulationSize = populationSize;
+            Iterations = iterations;
+        }
+
+        public GeneticInitializer()
+        {
+
+        }
     }
 
     public class LVQInitializer : NetworkInitializer

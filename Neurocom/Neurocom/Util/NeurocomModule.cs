@@ -14,6 +14,7 @@ using Neurocom.CustomModels;
 using Neurocom.Models;
 using System.Reflection;
 using Neurocom.BL.Services.ControllerServices.UserControllerServices;
+using Neurocom.BL.Services.GeneticServices;
 
 namespace Neurocom.Util
 {
@@ -39,6 +40,7 @@ namespace Neurocom.Util
             Bind<IManageTasks>().To<ManageTasksService>();
             Bind<IManageTest>().To<ManageTestNetworksService>();
             Bind<IUserController>().To<IUserService>();
+            Bind<IGeneticService>().To<GeneticService>();
 
             Bind<Func<NetworkInitializer, INetworkService>>().ToMethod(
                 context =>
@@ -55,6 +57,10 @@ namespace Neurocom.Util
                                 return new LVQKerogenService();
                             case "LVQLayer":
                                 return new LVQLayerService();
+                            case "GeneticBPNKerogen":
+                                return new GeneticBPNKerogenService();
+                            case "GeneticBPNLayer":
+                                return new GeneticBPNLayerService();
                             default:
                                 throw new ArgumentException("cannot find specified network");
                         }
@@ -78,6 +84,10 @@ namespace Neurocom.Util
                                 return new LVQKerogenService(xml);
                             case "LVQLayer":
                                 return new LVQLayerService(xml);
+                            case "GeneticBPNKerogen":
+                                return new GeneticBPNKerogenService();
+                            case "GeneticBPNLayer":
+                                return new GeneticBPNLayerService();
                             default:
                                 throw new ArgumentException("cannot find specified network");
                         }
@@ -171,6 +181,8 @@ namespace Neurocom.Util
                             case "LVQ":
                                 return new LVQInitializer { taskName = network.TaskName, networkName = network.Name, answers = answer.GetAnswers(),
                                     patterns = answer.GetInputs(), numOfClusters = answer.GetNumOfClusters()};
+                            case "GeneticBPN":
+                                return new GeneticInitializer { taskName = network.TaskName, networkName = network.Name, parameters = answer.GetParameters() };
                             default:
                                 throw new ArgumentException("cannot find specified network");
                         }
@@ -186,6 +198,8 @@ namespace Neurocom.Util
                       switch (network.networkName)
                       {
                           case "BPN":
+                              return network;
+                          case "GeneticBPN":
                               return network;
                           case "LVQ":
                               {
@@ -270,6 +284,8 @@ namespace Neurocom.Util
                            return new BPNInitializer();
                        case "LVQ":
                            return new LVQInitializer();
+                       case "GeneticBPN":
+                           return new GeneticInitializer();
                        default:
                            throw new ArgumentException("cannot find specified network");
                    }

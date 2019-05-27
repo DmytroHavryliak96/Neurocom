@@ -37,12 +37,12 @@ namespace Neurocom.BL.Services
             return result;
         }
 
-        public void Train(double[][] inputs, double[][] answers)
+        public virtual void Train(double[][] inputs, double[][] answers)
         {
             bpn.TrainNetwork(inputs, Normalize.FormAnswersBackPropagation(answers), minError, learningRate, Momentum);
         }
 
-        public void InitializeService(NetworkInitializer initializer)
+        public virtual void InitializeService(NetworkInitializer initializer)
         {
             BPNInitializer input = (BPNInitializer)initializer;
             this.parameters = input.parameters;
