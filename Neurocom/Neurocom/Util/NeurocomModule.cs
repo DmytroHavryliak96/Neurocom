@@ -85,9 +85,9 @@ namespace Neurocom.Util
                             case "LVQLayer":
                                 return new LVQLayerService(xml);
                             case "GeneticBPNKerogen":
-                                return new GeneticBPNKerogenService();
+                                return new GeneticBPNKerogenService(xml);
                             case "GeneticBPNLayer":
-                                return new GeneticBPNLayerService();
+                                return new GeneticBPNLayerService(xml);
                             default:
                                 throw new ArgumentException("cannot find specified network");
                         }

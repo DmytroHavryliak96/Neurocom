@@ -29,7 +29,7 @@ namespace Neurocom.BL.Services
             return this.bpn.Save();
         }
 
-        public int TestNetwork(double[] test)
+        public virtual int TestNetwork(double[] test)
         {
             int result;
             double[] output = new double[1];

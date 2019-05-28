@@ -16,10 +16,10 @@ namespace Neurocom.BL.Services
         public string networkName { get; set; }
 
         [Range(0.001, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
-        public double minError { get; set; }
+        public double minError { get; set; } = 0.1;
 
         [Range(0.1, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
-        public double learningRate { get; set; }
+        public double learningRate { get; set; } = 0.1;
 
         public NetworkInitializer(double minError, double learningRate)
         {
@@ -37,12 +37,12 @@ namespace Neurocom.BL.Services
     public class BPNInitializer : NetworkInitializer
     {
         [Range(0.1, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
-        public double Momentum { get; set; }
+        public double Momentum { get; set; } = 0.1;
 
         [HiddenInput(DisplayValue = false)]
         public int parameters { get; set; }
 
-        [Range(5, 10, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        [Range(1, 10, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int hidden { get; set; }
 
         public BPNInitializer(double minError, double learningRate, double Momentum, int parameters, int hidden) : base(minError, learningRate)
@@ -71,16 +71,25 @@ namespace Neurocom.BL.Services
 
     public class GeneticInitializer : BPNInitializer
     {
+        [HiddenInput(DisplayValue = false)]
+        new public double minError { get; set; } = 0.1;
+
+        [HiddenInput(DisplayValue = false)]
+        new public double learningRate { get; set; } = 0.1;
+
+        [HiddenInput(DisplayValue = false)]
+        new public double Momentum { get; set; } = 0.1;
+
         [Range(0.1, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public double Crossover { get; set; }
 
-        [Range(0.01, 0.05, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        [Range(0.01, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public double MutationRate { get; set; }
 
-        [Range(100, 200, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        [Range(1, 200, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int PopulationSize { get; set; }
 
-        [Range(100, 200, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        [Range(1, 10000, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int Iterations { get; set; }
 
         public GeneticInitializer(double Momentum, int parameters, int hidden, double crossover, double mutationRate, int populationSize, int iterations)
@@ -100,6 +109,12 @@ namespace Neurocom.BL.Services
 
     public class LVQInitializer : NetworkInitializer
     {
+        [Range(0.001, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        public double minError { get; set; }
+
+        [Range(0.1, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        public double learningRate { get; set; }
+
         [Range(0.5, 0.9, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public double decayRate { get; set; }
 
@@ -114,6 +129,9 @@ namespace Neurocom.BL.Services
 
         public LVQInitializer(double minError, double learningRate, double decayRate, int numOfClusters, double[][] patternsInput, double[][] answersInput) : base(minError, learningRate)
         {
+            this.minError = minError;
+            this.learningRate = learningRate;
+
             this.decayRate = decayRate;
             this.numOfClusters = numOfClusters;
 

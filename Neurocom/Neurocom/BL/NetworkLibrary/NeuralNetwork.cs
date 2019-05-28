@@ -377,11 +377,25 @@ namespace Neurocom.BL.NetworkLibrary
         public int getCluster(double[] input, double[] output)
         {
             Run(ref input, out output);
-            if ((output[0] >= -1.0) && (output[0] < -0.3))
+            if ((output[0] >= -1) && (output[0] < -0.3))
                 return 1;
             else
             {
                 if ((output[0] >= -0.3) && (output[0] < 0.3))
+                    return 2;
+                else
+                    return 3;
+            }
+        }
+
+        public int getClusterGenetic(double[] input, double[] output)
+        {
+            Run(ref input, out output);
+            if ((output[0] >= 0) && (output[0] < 0.3))
+                return 1;
+            else
+            {
+                if ((output[0] >= 0.3) && (output[0] < 0.6))
                     return 2;
                 else
                     return 3;
@@ -586,11 +600,18 @@ namespace Neurocom.BL.NetworkLibrary
             int counter = 0;
             for (int l = 0; l < layerCount; l++)
             {
+                for (int i = 0; i < layerSize[l]; i++)
+                {
+                    bias[l][i] = weights[counter++];
+                }
+
+
                 for (int i = 0; i < (l == 0 ? inputSize : layerSize[l - 1]); i++)
                 {
                     for (int j = 0; j < layerSize[l]; j++)
                     {
                         weight[l][i][j] = weights[counter++];
+                        
                     }
                 }
             }
@@ -1050,6 +1071,24 @@ namespace Neurocom.BL.NetworkLibrary
                     returnAnswer[i][0] = -1;
                 if (answers[i][0] == 2)
                     returnAnswer[i][0] = 0;
+                if (answers[i][0] == 3)
+                    returnAnswer[i][0] = 1;
+            }
+            return returnAnswer;
+        }
+
+        public static double[][] FormAnswersGeneticBPNKerogen(double[][] answers)
+        {
+            double[][] returnAnswer = new double[answers.Length][];
+            for (int i = 0; i < answers.Length; i++)
+                returnAnswer[i] = new double[1];
+
+            for (int i = 0; i < answers.GetUpperBound(0) + 1; i++)
+            {
+                if (answers[i][0] == 1)
+                    returnAnswer[i][0] = 0;
+                if (answers[i][0] == 2)
+                    returnAnswer[i][0] = 0.5;
                 if (answers[i][0] == 3)
                     returnAnswer[i][0] = 1;
             }

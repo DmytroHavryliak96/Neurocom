@@ -115,7 +115,7 @@ namespace Neurocom.Models
                 const int kerogenAmount = 19;
                 const int layerAmount = 15;
                 const int typesAmount = 2;
-                const int networkAmount = 2;
+                const int networkAmount = 3;
 
                 KerogenRepository dbKerogens = new KerogenRepository(db);
                 Kerogen[] kerogens = new Kerogen[kerogenAmount] {
@@ -189,7 +189,8 @@ namespace Neurocom.Models
                 NeuralNetwork[] networks = new NeuralNetwork[networkAmount]
                 {
                     new NeuralNetwork {Name = "BPN", Description = "param", NetworkTypeId = 1 },
-                    new NeuralNetwork {Name = "LVQ", Description = "param", NetworkTypeId = 2 }
+                    new NeuralNetwork {Name = "LVQ", Description = "param", NetworkTypeId = 2 },
+                    new NeuralNetwork {Name = "GeneticBPN", Description = "param", NetworkTypeId = 1 }
                 };
 
                 for (int i = 0; i < networkAmount; i++)
@@ -204,7 +205,9 @@ namespace Neurocom.Models
                     new AvailableNetwork {NeuralNetworkId = GetNetworkId("BPN", dbNetworks), TaskId =  GetTaskId("Kerogen", dbTasks)},
                     new AvailableNetwork {NeuralNetworkId = GetNetworkId("BPN", dbNetworks), TaskId =  GetTaskId("Layer", dbTasks)},
                     new AvailableNetwork {NeuralNetworkId = GetNetworkId("LVQ", dbNetworks), TaskId =  GetTaskId("Kerogen", dbTasks)},
-                    new AvailableNetwork {NeuralNetworkId = GetNetworkId("LVQ", dbNetworks), TaskId =  GetTaskId("Layer", dbTasks)}
+                    new AvailableNetwork {NeuralNetworkId = GetNetworkId("LVQ", dbNetworks), TaskId =  GetTaskId("Layer", dbTasks)},
+                    new AvailableNetwork {NeuralNetworkId = GetNetworkId("GeneticBPN", dbNetworks), TaskId =  GetTaskId("Kerogen", dbTasks)},
+                    new AvailableNetwork {NeuralNetworkId = GetNetworkId("GeneticBPN", dbNetworks), TaskId =  GetTaskId("Layer", dbTasks)}
                 };
 
                 for (int i = 0; i < aNetworks.Length; i++)

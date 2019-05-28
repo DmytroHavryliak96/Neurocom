@@ -29,6 +29,13 @@ namespace Neurocom.CustomModels
 
                         break;
                     }
+                case "GeneticBPN":
+                    {
+                        newbindingContext.ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(
+                             () => new GeneticInitializer(), typeof(GeneticInitializer));
+
+                        break;
+                    }
                 case "LVQ":
                     {
 
