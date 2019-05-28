@@ -64,7 +64,7 @@ namespace Neurocom.BL.Services.GeneticServices
                             fitness += 1.0 - output[0];
 
                         if (outputs[i][0] == 0.5)
-                            fitness += 1.0 - Math.Abs(output[0]-0.5);
+                            fitness += 1.0 - Math.Abs(output[0]-0.5)*2;
 
                         if (outputs[i][0] == 1)
                             fitness += output[0];
