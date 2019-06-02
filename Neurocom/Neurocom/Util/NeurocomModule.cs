@@ -58,9 +58,9 @@ namespace Neurocom.Util
                             case "LVQLayer":
                                 return new LVQLayerService();
                             case "GeneticBPNKerogen":
-                                return new GeneticBPNKerogenService();
+                                return new GeneticBPNService();
                             case "GeneticBPNLayer":
-                                return new GeneticBPNLayerService();
+                                return new GeneticBPNService();
                             default:
                                 throw new ArgumentException("cannot find specified network");
                         }
@@ -85,9 +85,9 @@ namespace Neurocom.Util
                             case "LVQLayer":
                                 return new LVQLayerService(xml);
                             case "GeneticBPNKerogen":
-                                return new GeneticBPNKerogenService(xml);
+                                return new GeneticBPNService(xml);
                             case "GeneticBPNLayer":
-                                return new GeneticBPNLayerService(xml);
+                                return new GeneticBPNService(xml);
                             default:
                                 throw new ArgumentException("cannot find specified network");
                         }
@@ -247,9 +247,9 @@ namespace Neurocom.Util
                                     propertyInfos = typeof(Kerogen).GetProperties();
                                     var model = (KerogenInput)inputModel;
                                     double[] testinput = new double[propertyInfos.Length - 2];
-                                    testinput[0] = model.Oxygen;
+                                    testinput[0] = model.Carbon;
                                     testinput[1] = model.Hydrogen;
-                                    testinput[2] = model.Carbon;
+                                    testinput[2] = model.Oxygen;
                                     testinput[3] = model.Nitrogen;
                                     testinput[4] = model.Sulfur;
                                     return testinput;

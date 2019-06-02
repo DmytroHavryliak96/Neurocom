@@ -395,7 +395,7 @@ namespace Neurocom.BL.NetworkLibrary
             var max = output.Max();
             int index = -1;
 
-            for (int k = 0; k < 3; k++)
+            for (int k = 0; k < output.Length; k++)
             {
                 if (output[k] == max)
                 {

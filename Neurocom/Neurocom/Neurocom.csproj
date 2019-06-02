@@ -259,8 +259,7 @@
     <Compile Include="BL\Services\ControllerServices\TestNetworkService.cs" />
     <Compile Include="BL\Services\ControllerServices\TrainNetworkService.cs" />
     <Compile Include="BL\Services\ControllerServices\UserControllerServices\UserService.cs" />
-    <Compile Include="BL\Services\GeneticServices\GeneticBPNKerogenService.cs" />
-    <Compile Include="BL\Services\GeneticServices\GeneticBPNLayerService.cs" />
+    <Compile Include="BL\Services\GeneticServices\GeneticBPNService.cs" />
     <Compile Include="BL\Services\GeneticServices\GeneticService.cs" />
     <Compile Include="BL\Services\LVQKerogenService.cs" />
     <Compile Include="BL\Services\LVQLayerService.cs" />

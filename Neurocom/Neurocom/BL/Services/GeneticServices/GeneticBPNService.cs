@@ -11,34 +11,50 @@ using Neurocom.BL.NetworkLibrary;
 
 namespace Neurocom.BL.Services.GeneticServices
 {
-    public class GeneticBPNKerogenService : BackPropagationKerogenService
+    public class GeneticBPNService : BackPropagationServices, INetworkService
     {
         private IGeneticService gaService;
         private IUnitOfWork Database;
         private IAnswerService answer;
 
+        private Func<string, IUnitOfWork, IAnswerService> func;
 
-        public GeneticBPNKerogenService() : base()
+        private int outputCount;
+
+        public GeneticBPNService() : base()
         {
-           
+            func = (tablename, db) =>
+            {
+                switch (tablename)
+                {
+                    case "Kerogen":
+                        return new KerogenAnswerService(db);
+                    case "Layer":
+                        return new LayerAnswerService(db);
+                    default:
+                        throw new ArgumentException("cannot find specified task");
+                }
+            };
         }
 
-        public GeneticBPNKerogenService(string xml) : base(xml)
+        public GeneticBPNService(string xml) : base(xml)
         {
 
         }
 
-        public override void CreateNetwork()
+        public void CreateNetwork()
         {
-            base.CreateNetwork();
+            bpn = new BackPropagationNetwork(layerSizes, TFuncs);
             bpn.SetBiasToZero();
         }
 
-        public override void InitializeService(NetworkInitializer initializer)
+        public void InitializeService(NetworkInitializer initializer)
         {
             gaService = new GeneticService();
             Database = new EFUnitOfWork();
-            answer = new KerogenAnswerService(Database);
+            answer = func(initializer.taskName, Database);
+
+            outputCount = answer.GetNumOfClusters();
 
             BPNInitializer input = (BPNInitializer)initializer;
             this.parameters = input.parameters;
@@ -46,7 +62,7 @@ namespace Neurocom.BL.Services.GeneticServices
             this.learningRate = input.learningRate;
             this.Momentum = input.Momentum;
             this.minError = input.minError;
-            layerSizes = new int[3] { this.parameters, this.hidden, 3 };
+            layerSizes = new int[3] { this.parameters, this.hidden, outputCount };
             TFuncs = new TransferFunction[3] {TransferFunction.None,
                                                                TransferFunction.Sigmoid,
                                                                TransferFunction.Sigmoid};
@@ -81,7 +97,7 @@ namespace Neurocom.BL.Services.GeneticServices
                 } );
         }
 
-        public override void Train(double[][] inputs, double[][] answers)
+        public void Train(double[][] inputs, double[][] answers)
         {
             gaService.TrainGA();
 
@@ -93,7 +109,7 @@ namespace Neurocom.BL.Services.GeneticServices
          bpn.SetWeights(weights);
         }
 
-        public override int TestNetwork(double[] test)
+        public int TestNetwork(double[] test)
         {
             int result;
             result = bpn.getClusterGenetic(test);
@@ -119,7 +135,9 @@ namespace Neurocom.BL.Services.GeneticServices
             answer.Dispose();
         }
 
-
-
+        public string SaveNetworkXml()
+        {
+            return this.bpn.Save();
+        }
     }
 }
