@@ -28,6 +28,12 @@ namespace Neurocom.BL.Services.GeneticServices
 
         }
 
+        public override void CreateNetwork()
+        {
+            base.CreateNetwork();
+            bpn.SetBiasToZero();
+        }
+
         public override void InitializeService(NetworkInitializer initializer)
         {
             gaService = new GeneticService();
@@ -40,10 +46,13 @@ namespace Neurocom.BL.Services.GeneticServices
             this.learningRate = input.learningRate;
             this.Momentum = input.Momentum;
             this.minError = input.minError;
-            layerSizes = new int[3] { this.parameters, this.hidden, 1 };
+            layerSizes = new int[3] { this.parameters, this.hidden, 3 };
             TFuncs = new TransferFunction[3] {TransferFunction.None,
                                                                TransferFunction.Sigmoid,
                                                                TransferFunction.Sigmoid};
+
+            double[][] inputs = answer.GetInputs();
+            double[][] outputs = answer.GetAnswers();
 
             gaService.InitializeGA(initializer, 
                 (weights)=> {
@@ -52,23 +61,21 @@ namespace Neurocom.BL.Services.GeneticServices
 
                     bpn.SetWeights(weights);
 
-                    double[][] inputs = answer.GetInputs();
-                    double[][] outputs = Normalize.FormAnswersGeneticBPNKerogen(answer.GetAnswers());
+                    int truePositive = 0;
+                    int others = 0;
 
-                    for(int i = 0; i < inputs.GetUpperBound(0)+1; i++)
+                    for (int i = 0; i < inputs.GetUpperBound(0)+1; i++)
                     {
-                        double[] output;
-                        bpn.Run(ref inputs[i], out output);
+                        int cluster;
+                        cluster = bpn.getClusterGenetic(inputs[i]);
 
-                        if (outputs[i][0] == 0) 
-                            fitness += 1.0 - output[0];
-
-                        if (outputs[i][0] == 0.5)
-                            fitness += 1.0 - Math.Abs(output[0]-0.5)*2;
-
-                        if (outputs[i][0] == 1)
-                            fitness += output[0];
+                        if (outputs[i][0] == cluster)
+                            truePositive += 1;
+                        else
+                            others += 1;
                     }
+
+                    fitness = (truePositive) / (double)(truePositive + others);
 
                     return fitness;
                 } );
@@ -83,14 +90,26 @@ namespace Neurocom.BL.Services.GeneticServices
 
             gaService.GetBestWeights(out weights, out fitness);
 
-            bpn.SetWeights(weights);
+         bpn.SetWeights(weights);
         }
 
         public override int TestNetwork(double[] test)
         {
             int result;
-            double[] output = new double[1];
-            result = bpn.getClusterGenetic(test, output);
+            result = bpn.getClusterGenetic(test);
+
+            // це для тестування
+           /* Database = new EFUnitOfWork();
+            answer = new KerogenAnswerService(Database);
+            double[][] inputs = answer.GetInputs();
+            double[] answers = new double[19];
+
+            for (int i = 0; i < inputs.GetUpperBound(0) + 1; i++)
+            {
+
+                answers[i] = bpn.getClusterGenetic(inputs[i]);
+            }*/
+
             return result;
         }
 
@@ -99,6 +118,7 @@ namespace Neurocom.BL.Services.GeneticServices
             Database.Dispose();
             answer.Dispose();
         }
+
 
 
     }

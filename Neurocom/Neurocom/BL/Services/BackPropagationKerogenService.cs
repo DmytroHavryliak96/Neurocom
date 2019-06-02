@@ -19,7 +19,7 @@ namespace Neurocom.BL.Services
             this.bpn = new BackPropagationNetwork(xml);
         }
 
-        public void CreateNetwork()
+        public virtual void CreateNetwork()
         {
             bpn = new BackPropagationNetwork(layerSizes, TFuncs);
         }

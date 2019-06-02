@@ -51,7 +51,7 @@ namespace Neurocom.BL.Services.GeneticServices
         private void InitializeWeights(NetworkInitializer initializer)
         {
             var input = (GeneticInitializer)initializer;
-            weights = 2 * input.hidden * (input.parameters + 1);
+            weights = input.hidden * (input.parameters + 3);
         }
 
     }

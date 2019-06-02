@@ -388,18 +388,23 @@ namespace Neurocom.BL.NetworkLibrary
             }
         }
 
-        public int getClusterGenetic(double[] input, double[] output)
+        public int getClusterGenetic(double[] input)
         {
+            double[] output;
             Run(ref input, out output);
-            if ((output[0] >= 0) && (output[0] < 0.3))
-                return 1;
-            else
+            var max = output.Max();
+            int index = -1;
+
+            for (int k = 0; k < 3; k++)
             {
-                if ((output[0] >= 0.3) && (output[0] < 0.6))
-                    return 2;
-                else
-                    return 3;
+                if (output[k] == max)
+                {
+                    index = k + 1;
+                    break;
+                }
             }
+
+            return index;
         }
 
         public int getClusterPlast(double[] input, double[] output)
@@ -598,21 +603,32 @@ namespace Neurocom.BL.NetworkLibrary
         public void SetWeights(double[] weights)
         {
             int counter = 0;
+
             for (int l = 0; l < layerCount; l++)
             {
-                for (int i = 0; i < layerSize[l]; i++)
+                /*for (int i = 0; i < layerSize[l]; i++)
                 {
-                    bias[l][i] = weights[counter++];
-                }
-
+                    bias[l][i] = 0.0;
+                }*/
 
                 for (int i = 0; i < (l == 0 ? inputSize : layerSize[l - 1]); i++)
                 {
                     for (int j = 0; j < layerSize[l]; j++)
                     {
                         weight[l][i][j] = weights[counter++];
-                        
+
                     }
+                }
+            }
+        }
+
+        public void SetBiasToZero()
+        {
+            for (int l = 0; l < layerCount; l++)
+            {
+                for (int i = 0; i < layerSize[l]; i++)
+                {
+                    bias[l][i] = 0.0;
                 }
             }
         }

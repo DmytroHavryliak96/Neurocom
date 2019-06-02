@@ -89,7 +89,7 @@ namespace Neurocom.BL.Services
         [Range(1, 200, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int PopulationSize { get; set; }
 
-        [Range(1, 10000, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        [Range(1, 100000, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int Iterations { get; set; }
 
         public GeneticInitializer(double Momentum, int parameters, int hidden, double crossover, double mutationRate, int populationSize, int iterations)
