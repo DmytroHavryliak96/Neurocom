@@ -107,7 +107,12 @@ namespace Neurocom.Controllers.UserControllers
                 return View("NetworkDataInput", input);
             }
         }
-
+        [HttpPost]
+        public ActionResult DeleteNetwork(int trainedNetworkId)
+        {
+            _contrl.DeleteUserNetwork(trainedNetworkId);
+            return RedirectToAction("Index");
+        }
 
     }
 }
