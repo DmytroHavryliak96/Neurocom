@@ -456,6 +456,7 @@
     <Content Include="Views\SimpleUser\LayerInputPartial.cshtml" />
     <Content Include="Views\SimpleUser\DataInput.cshtml" />
     <Content Include="Views\SimpleUser\TaskList.cshtml" />
+    <Content Include="Views\User\GeneticBPNPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

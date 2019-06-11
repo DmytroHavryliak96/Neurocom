@@ -1,0 +1,32 @@
+﻿@model Neurocom.BL.Services.GeneticInitializer
+
+@using (Html.BeginForm("CreateNet", "User"))
+{
+    <div class="col-md-4">
+        <h5>Кроссовер</h5>
+        <br />
+        <h5>Коефіцієнт мутації</h5>
+        <br />
+        <h5>Розмір популяції</h5>
+        <br />
+        <h5>Кількість ітерацій</h5>
+    </div>
+
+    <p>@Html.TextBoxFor(m => m.Crossover, new { type = "number", min = "0.1", max = "0.9", step = "0.1", Value = "0.7", required = "required", style = "width:176px" })</p>
+    <br />
+    <p>@Html.TextBoxFor(m => m.MutationRate, new { type = "number", min = "0.01", max = "0.9", step = "0.01", Value = "0.7", required = "required", style = "width:176px" })</p>
+    <br />
+    <p>@Html.TextBoxFor(m => m.PopulationSize, new { type = "number", min = "1", max = "200", Value = "1", required = "required", style = "width:176px" })</p>
+    <br />
+    <p>@Html.TextBoxFor(m => m.Iterations, new { type = "number", min = "1", max = "100000", Value = "1", required = "required", style = "width:176px" })</p>
+
+    @Html.Hidden("taskName", Model.taskName)
+
+    @Html.Hidden("networkName", Model.networkName)
+    @Html.Hidden("hidden", Model.hidden)
+
+    <input type="submit" value="Створити мережу">
+}
+
+
+
