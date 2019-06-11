@@ -10,6 +10,8 @@
         <h5>Розмір популяції</h5>
         <br />
         <h5>Кількість ітерацій</h5>
+        <br />
+        <h5>Кількість нейронів у прихованому шарі</h5>
     </div>
 
     <p>@Html.TextBoxFor(m => m.Crossover, new { type = "number", min = "0.1", max = "0.9", step = "0.1", Value = "0.7", required = "required", style = "width:176px" })</p>
@@ -19,11 +21,13 @@
     <p>@Html.TextBoxFor(m => m.PopulationSize, new { type = "number", min = "1", max = "200", Value = "1", required = "required", style = "width:176px" })</p>
     <br />
     <p>@Html.TextBoxFor(m => m.Iterations, new { type = "number", min = "1", max = "100000", Value = "1", required = "required", style = "width:176px" })</p>
+    <br />
+    <p>@Html.TextBoxFor(m => m.hidden, new { type = "number", min = "1", max = "10", Value = "1", required = "required", style = "width:176px" })</p>
 
     @Html.Hidden("taskName", Model.taskName)
 
     @Html.Hidden("networkName", Model.networkName)
-    @Html.Hidden("hidden", Model.hidden)
+    @Html.Hidden("parameters", Model.parameters)
 
     <input type="submit" value="Створити мережу">
 }

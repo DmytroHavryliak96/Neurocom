@@ -74,9 +74,6 @@ namespace Neurocom.BL.Services
         [HiddenInput(DisplayValue = false)]
         new public double minError { get; set; } = 0.1;
 
-        [HiddenInput(DisplayValue = false)]
-        new public int hidden { get; set; } = 1;
-
        [HiddenInput(DisplayValue = false)]
         new public double learningRate { get; set; } = 0.1;
 
