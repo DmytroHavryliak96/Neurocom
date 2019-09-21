@@ -231,7 +231,8 @@ namespace Neurocom.BL.Services.ControllerServices.UserControllerServices
 
         public void DeleteUserNetwork(int _testId)
         {
-            throw new NotImplementedException();
+            database.TrainedNetworks.Delete(_testId);
+            database.Save();
         }
     }
 }
